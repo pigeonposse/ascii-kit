@@ -1,0 +1,19 @@
+/* .tabs input[type="radio"] {
+	display: none;
+}
+
+.tabs label {
+	cursor: pointer;
+	padding: 20px !important;
+}
+.tabs input[type="radio"]:checked + label {
+	color: #485fc7;
+}
+.tabs-content > div {
+	display: none;
+}
+#tab-text:checked ~  #form-text,
+#tab-image:checked ~ #form-image,
+#tab-svg:checked ~ #form-svg {
+      display: block;
+} */

@@ -1,0 +1,70 @@
+###############################################################################
+# RELEASE DOCS
+###############################################################################
+
+name: 🚀📚 Release Documentation
+
+on:
+  workflow_dispatch:
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+env:
+    GITHUB_TOKEN: ${{ github.token }}
+    DOCS_ID: 'dovenv'
+    DOCS_DIR: 'packages/docs/build/docs'
+    BUILD_CMD: 'pnpm build && pnpm build-doc'
+
+###############################################################################
+# JOBS
+###############################################################################
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      #########################################################################
+      # INIT
+      #########################################################################
+
+      - name: ⬇️🛑 Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+      - name: ⬇️🛎 Checkout
+        uses: actions/checkout@v4
+      - name: ⬇️🥡 Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: ⬇️🟢 Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: ⬇️📦 Install dependencies
+        run: |
+           export npm_config_build_from_source=false
+           pnpm install --no-frozen-lockfile --ignore-scripts
+           pnpm i -g wrangler
+
+      #########################################################################
+      # BUILD
+      #########################################################################
+
+      - name: 🏗 Build packages
+        run: ${{env.BUILD_CMD}}
+
+      ###################################################################
+      # BUILD AND DEPLOY
+      ###################################################################
+
+      - name: 🌥 Deploy in cloudflare pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ${{env.DOCS_DIR}} --project-name=${{env.DOCS_ID}}
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          packageManager: pnpm
+
+###############################################################################

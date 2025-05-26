@@ -1,0 +1,15 @@
+
+/** @type {import('unbuild').BuildConfig} */
+export const config = {
+	sourcemap   : false,
+	declaration : true,
+	rollup      : {
+		inlineDependencies : true,
+		emitCJS            : true,
+		esbuild            : {
+			minify : true,
+			target : 'node20',
+		},
+	},
+	failOnWarn : true,
+}

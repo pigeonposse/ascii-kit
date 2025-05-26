@@ -1,0 +1,9 @@
+{
+	"extends": "./node_modules/@ascii-kit/repo-config/tsconfig.json",
+	"include": [
+		"./src",
+	],
+	"exclude": [
+		"./node_modules/**"
+	]
+}

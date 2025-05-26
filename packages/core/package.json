@@ -1,0 +1,47 @@
+{
+	"name": "ascii-kit",
+	"version": "0.0.1",
+	"description": "Add your description here",
+	"keywords": [
+		"ascii",
+		"ascii-art",
+		"ascii-kit",
+		"dovenv",
+		"pigeonposse",
+		"pp"
+	],
+	"type": "module",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/main.d.mts",
+				"default": "./dist/main.mjs"
+			},
+			"require": {
+				"types": "./dist/main.d.cts",
+				"default": "./dist/main.cjs"
+			}
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild",
+		"test": "vitest run -r src --passWithNoTests"
+	},
+	"dependencies": {
+		"@ascii-kit/font": "workspace:*",
+		"@ascii-kit/image": "workspace:*",
+		"@ascii-kit/qr": "workspace:*",
+		"@ascii-kit/svg": "workspace:*",
+		"@ascii-kit/tree": "workspace:*"
+	},
+	"devDependencies": {
+		"@ascii-kit/repo-config": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	}
+}

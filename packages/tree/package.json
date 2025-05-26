@@ -1,0 +1,37 @@
+{
+	"name": "@ascii-kit/tree",
+	"version": "0.0.1",
+	"description": "Add your description here",
+	"keywords": [
+		"dovenv",
+		"pigeonposse",
+		"pp"
+	],
+	"type": "module",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./dist/main.d.mts",
+				"default": "./dist/main.mjs"
+			},
+			"require": {
+				"types": "./dist/main.d.cts",
+				"default": "./dist/main.cjs"
+			}
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "unbuild",
+		"test": "vitest run -r src --passWithNoTests"
+	},
+	"devDependencies": {
+		"@ascii-kit/repo-config": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	}
+}

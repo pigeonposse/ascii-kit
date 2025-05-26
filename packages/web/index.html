@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASCII Kit | Convert text, image or svg to ASCII art</title>
+  <meta name="description" content="ASCII Kit | Convert text, image or svg to ASCII art" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
+  />
+</head>
+<body class="container">
+
+	<header class="has-text-centered mb-5">
+        <h1 class="title is-2">ASCII Kit</h1>
+        <p class="subtitle is-5">Convert text, image or svg to ASCII art</p>
+      </header>
+    <div>
+
+      <div class="tabs is-centered is-boxed" role="tablist" aria-label="ASCII Tab Options">
+  <ul>
+    <li>
+      <button
+        id="tab-text"
+        role="tab"
+        aria-selected="true"
+        aria-controls="form-text"
+        class="is-active"
+        tabindex="0"
+      >Texto</button>
+    </li>
+    <li>
+      <button
+        id="tab-image"
+        role="tab"
+        aria-selected="false"
+        aria-controls="form-image"
+        tabindex="-1"
+      >Imagen</button>
+    </li>
+    <li>
+      <button
+        id="tab-svg"
+        role="tab"
+        aria-selected="false"
+        aria-controls="form-svg"
+        tabindex="-1"
+      >SVG</button>
+    </li>
+  </ul>
+      </div>
+
+      <div class="tabs-content">
+        <div id="form-text" role="tabpanel" aria-labelledby="tab-text">
+          <h2 class="title is-4">Convertir Texto</h2>
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" placeholder="Introduce el texto aquí..."></textarea>
+            </div>
+          </div>
+          <button class="button is-link" id="convert-text">Generate</button>
+        </div>
+
+		<div id="form-image" class="mt-6" role="tabpanel" aria-labelledby="tab-image">
+		<h2 class="title is-4">Convertir Imagen</h2>
+		<form id="ascii-image-form">
+			<div class="file is-boxed">
+			<label class="file-label">
+				<input class="file-input" type="file" accept="image/*" name="image" required />
+				<span class="file-cta">
+				<span class="file-label">Seleccionar imagen...</span>
+				</span>
+			</label>
+			</div>
+			<button type="submit" class="button is-link mt-3">Generate</button>
+		</form>
+		</div>
+
+        <div id="form-svg" class="mt-6" role="tabpanel" aria-labelledby="tab-svg">
+          <h2 class="title is-4">Convertir SVG</h2>
+          <div class="field">
+            <div class="control">
+              <textarea class="textarea" placeholder="Introduce el SVG aquí..."></textarea>
+            </div>
+          </div>
+          <button class="button is-link" id="convert-svg">Generate</button>
+        </div>
+      </div>
+
+      <section id="result" class="section">
+        <h2 class="title is-4">Resultado</h2>
+        <pre id="result" class="box has-background-dark"></pre>
+      </section>
+    </div>
+
+
+  <footer>
+    <div class="has-text-centered">
+      <p>
+        <a href="https://pigeonposse.com/" target="_blank">Made with ❤️ by PigeonPosse</a>
+      </p>
+      <button id="share" class="button is-primary is-small mt-2">Compartir</button>
+    </div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+  <script defer>
+    const $shareBtn = document.getElementById('share');
+
+    $shareBtn.addEventListener('click', async () => {
+      if (!navigator.share) {
+        alert('Web Share API no soportada en tu navegador.');
+        return;
+      }
+
+      try {
+        await navigator.share({ url: window.location.href });
+      } catch (err) {
+        console.error('Error al compartir:', err);
+      }
+    });
+  </script>
+</body>
+</html>

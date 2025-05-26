@@ -1,0 +1,34 @@
+{
+	"name": "@ascii-kit/web",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Web for ascii-kit",
+	"keywords": [
+		"ascii",
+		"ascii-art",
+		"ascii-kit",
+		"dovenv",
+		"pigeonposse",
+		"pp"
+	],
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "vite build",
+		"dev": "vite",
+		"preview": "vite preview",
+		"test": "vitest run -r src --passWithNoTests"
+	},
+	"devDependencies": {
+		"@ascii-kit/font": "workspace:*",
+		"@ascii-kit/image": "workspace:*",
+		"@ascii-kit/repo-config": "workspace:*",
+		"@ascii-kit/svg": "workspace:*"
+	},
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	}
+}
