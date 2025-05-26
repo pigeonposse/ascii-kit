@@ -23,6 +23,7 @@ const names: Fonts[] = [
 	'def--leppard',
 
 ]
+
 await Promise.all( names.map( async name => {
 
 	const f = await setFont( name )
@@ -32,7 +33,7 @@ await Promise.all( names.map( async name => {
 
 // console.log( await setFont( 'banner', 'HELLO!' ) )
 
-const checkBrokenFonts = async () => {
+export const checkBrokenFonts = async () => {
 
 	const fontsBroken : Set<string> = new Set()
 
@@ -59,4 +60,4 @@ const checkBrokenFonts = async () => {
 
 }
 
-checkBrokenFonts()
+// checkBrokenFonts()

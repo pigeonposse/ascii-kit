@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ASCII Font Viewer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2em;
+    }
+    select {
+      font-size: 1em;
+      margin-bottom: 1em;
+    }
+    pre {
+      font-family: monospace;
+      white-space: pre;
+      background: #f4f4f4;
+      padding: 1em;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>ASCII Font Viewer</h1>
+  <label for="fontSelect">Choose a font:</label>
+  <select id="fontSelect">
+    <option value="">Loading fonts...</option>
+  </select>
+
+  <pre id="output">Select a font to see "Hello!" in ASCII art</pre>
+
+  <script type="module">
+    const fontSelect = document.getElementById('fontSelect');
+    const outputEl = document.getElementById('output');
+    const apiUrl = 'fonts';
+
+    // Load list of font names
+    async function loadFontList() {
+      try {
+        const res = await fetch(apiUrl);
+        const fontNames = await res.json();
+		console.log(fontNames)
+        fontSelect.innerHTML = '<option value="">-- Select a font --</option>';
+        fontNames.forEach(name => {
+          const option = document.createElement('option');
+          option.value = name;
+          option.textContent = name;
+          fontSelect.appendChild(option);
+        });
+      } catch (err) {
+        fontSelect.innerHTML = '<option value="">Error loading fonts</option>';
+        outputEl.textContent = 'Failed to load font list: ' + err.message;
+      }
+    }
+
+    // Load and render selected font
+    async function renderFont(name) {
+      if (!name) {
+        outputEl.textContent = 'Please select a font.';
+        return;
+      }
+
+      outputEl.textContent = `Loading font "${name}"...`;
+
+      try {
+        const fontModule = await import(`https://unpkg.com/@ascii-kit/font-${name}/dist/index.js`);
+		console.log(fontModule)
+        const fontString = new fontModule.default;
+        const asciiText = await font.text('Hello!');
+        outputEl.textContent = asciiText;
+      } catch (e) {
+        outputEl.textContent = `Error loading font "${name}":\n\n${e.message}`;
+      }
+    }
+
+    // Event listener for font selection
+    fontSelect.addEventListener('change', (e) => {
+      const selectedFont = e.target.value;
+      renderFont(selectedFont);
+    });
+
+    // Initialize
+    loadFontList();
+  </script>
+</body>
+</html>

@@ -142,7 +142,7 @@ jobs:
       - name: Get updated versions if exists
         id: updated
         run: |
-          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "@dovenv/core") | .version')
+          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "ascii-kit") | .version')
           core_version_major=${core_version%%.*}
           echo Set changesets outputs
           echo '${{ toJSON(steps.changesets.outputs) }}'
@@ -173,7 +173,12 @@ jobs:
         if: steps.check_package_json.outputs.stdout != 'No changes in package.json'
         run: pnpm . gh info update
         continue-on-error: true
-
+      - name: 📚🐙😺➡️ Call to workflow for deploy Documentation
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: fonts.yml
+        continue-on-error: true
       - name: 📚🐙😺➡️ Call to workflow for deploy Documentation
         if: steps.updated.outputs.core_version != ''
         uses: benc-uk/workflow-dispatch@v1

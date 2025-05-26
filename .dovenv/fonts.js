@@ -1,14 +1,12 @@
 import { defineConfig } from '@dovenv/core'
 import {
 	decompress,
-
 	ensureDir,
 	existsDir,
 	getBaseName,
 	getFileText,
 	getPaths,
 	joinPath,
-	snake2Camel,
 	writeFile,
 } from '@dovenv/core/utils'
 import { generate } from 'astring'
@@ -39,8 +37,8 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		const ALL_FONT_PATH      = joinPath( PACKAGES_PATH, 'fonts-all' )
 		const ALL_FONT_DIST_PATH = joinPath( ALL_FONT_PATH, FONT_DIST_ROUTE )
 
-		const VERSION = utils.pkg.version
-
+		const VERSION = utils.config.const.corePkg.version
+		if ( !VERSION ) throw new Error( 'Version not found' )
 		const existsFonts = await existsDir( FONT_TEMP_PATH )
 
 		if ( !existsFonts ) {
@@ -112,12 +110,15 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 
 		/** @type {import('@dovenv/core/utils').PackageJSON} */
 		const pkgDataShared = {
+			version  : VERSION,
 			keywords : [
 				'ascii',
 				'dovenv',
 				'font',
 				'figfont',
 				'pp',
+				'pigeonposse',
+				'ascii-kit',
 				'theme',
 			],
 			homepage : `https://${LIB_ID}.pigeonposse.com`,
@@ -148,7 +149,6 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		/** @type {import('@dovenv/core/utils').PackageJSON} */
 		const ALL_FONT_PKG_DATA = {
 			name        : getPKGname( ALL_FONT_PKG_ID ),
-			version     : VERSION,
 			description : `All in one Figfonts for be imported as a JS module`,
 			exports     : { '.' : { import : {
 				types   : './' + FONT_DTS_ROUTE,
@@ -161,6 +161,8 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 			...pkgDataShared,
 		}
 
+		const getFontID = sufix => 'font-' + sufix
+
 		/**
 		 * Get package data
 		 *
@@ -170,8 +172,7 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		const getPackageData = name => {
 
 			return {
-				name        : getPKGname( 'font-' + name ),
-				version     : VERSION,
+				name        : getPKGname( getFontID( name ) ),
 				description : `Figfont "${name}" for be imported as a JS module`,
 				exports     : { '.' : { import : {
 					types   : './' + FONT_DTS_ROUTE,
@@ -211,18 +212,26 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 				sourceType : 'module',
 			} )
 
+			if ( typeof code !== 'string' ) throw new Error( 'Generated code is not a string' )
+
 			return {
 				js  : code,
 				dts : `/** FigFont "${name}" data */\ndeclare const font: string\nexport default font`,
 			}
 
 		}
-		const getReadmeData = fontName => `# ${fontName} - Figfont \n\nThis package contains figfont data for the font **${fontName}**. \n\n## Example usage \n\n\`\`\`js\nimport ${digitsToEnglish( snake2Camel( fontName ) )} from '${getPKGname( fontName )}'\nimport {Font} from '@${LIB_ID}/font'\nconst font = new Font( ${fontName} )\nconsole.log( await font.text( 'Hello World!' )\n\`\`\``
-		const toJson        = d => JSON.stringify( d, null, '\t' )
-		const flfFiles      = await getPaths( joinPath( FONT_TEMP_PATH, '**/*.flf' ) )
+		const getReadmeData = fontName => {
+
+			const importedName = digitsToEnglish( fontName.replaceAll( '-', '_' ) )
+			return `# ${fontName} - Figfont \n\nThis package contains figfont data for the font **${fontName}**. \n\n## Example usage \n\n\`\`\`js\nimport ${importedName} from '${getPKGname( fontName )}'\nimport {Font} from '@${LIB_ID}/font'\n\nconst font = new Font( ${importedName} )\nconsole.log( await font.text( 'Hello World!' )\n\`\`\``
+
+		}
+
+		const toJson   = d => JSON.stringify( d, null, '\t' )
+		const flfFiles = await getPaths( joinPath( FONT_TEMP_PATH, '**/*.flf' ) )
 		console.log( 'Flf files found: ', flfFiles.length )
 
-		console.log( 'Generating font packages...' )
+		console.log( 'Generating font packages...\n' )
 
 		await ensureDir( ALL_FONT_DIST_PATH )
 
@@ -230,6 +239,7 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 
 			const filename    = getBaseName( file )
 			const fontNamePre = filename.replace( '.flf', '' ).replaceAll( ' ', '--' ).toLowerCase()
+
 			if ( fonts.has( fontNamePre ) ) return
 
 			const fontName  = fontNamePre //(  file.includes( 'xero' ) ? 'xero-' : '' ) + fontNamePre
@@ -242,14 +252,15 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 			await writeFile( joinPath( FONT_PATH, FONT_JS_ROUTE ), content.js, 'utf8' )
 			await writeFile( joinPath( FONT_PATH, FONT_DTS_ROUTE ), content.dts, 'utf8' )
 			await writeFile( joinPath( FONT_PATH, 'package.json' ), toJson( pkgData ), 'utf8' )
-			await writeFile( joinPath( FONT_PATH, 'README.md' ), getReadmeData( fontName ), 'utf8' )
+			await writeFile( joinPath( FONT_PATH, 'README.md' ), getReadmeData( getFontID( fontName ) ), 'utf8' )
 			await writeFile( joinPath( ALL_FONT_DIST_PATH, fontName + '.js' ), content.js, 'utf8' )
 			await writeFile( joinPath( ALL_FONT_DIST_PATH, fontName + '.d.ts' ), content.dts, 'utf8' )
 
 			fonts.add( fontName )
-			console.log( `✅ Generated font package: ${fontName}\n  - PATH: ${FONT_PATH}` )
+			// console.log( `✅ Generated font package: ${fontName}\n  - PATH: ${FONT_PATH}` )
 
 		} ) )
+
 		const fontsArray  = [ ...fonts ]
 		const fontsString = toJson( fontsArray )
 		const typeDef     = `/** List of figfonts names */\ndeclare const fonts: ${fontsString};\nexport default fonts;\n`
@@ -258,9 +269,9 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		await writeFile( joinPath( ALL_FONT_DIST_PATH, 'list.json' ), fontsString, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_DIST_PATH, 'index.js' ), `export default ${fontsString}\n`, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_PATH, FONT_DIST_ROUTE, 'index.d.ts' ), typeDef, 'utf8' )
-		console.log( `✅ Generated font package: ${ALL_FONT_PKG_ID}\n  - PATH: ${ALL_FONT_PATH}\n` )
+		// console.log( `✅ Generated font package: ${ALL_FONT_PKG_ID}\n  - PATH: ${ALL_FONT_PATH}\n` )
 
-		console.log( `🎉 Finished generating font packages.  - PATH: ${FONT_PKG_PATH}\n  - PACKAGES: ${fonts.size}` )
+		console.log( `🎉 Finished generating font packages.\n\n  - PATH: ${FONT_PKG_PATH}\n  - PACKAGES: ${fonts.size}` )
 
 		// await removeDirIfExist( TEMP_PATH )
 

@@ -66,5 +66,6 @@ packages/**/build
 **/__cache__/*
 docs/dev-dist/**
 
+**/packages/fonts/.temp/**
 **/packages/fonts
 **/packages/fonts-all

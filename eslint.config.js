@@ -21,6 +21,7 @@ const config = setConfig(
 			'**/.dovenv/**/templates/*',
 			'**/packages/create/data/**',
 			'**/packages/fonts/**',
+			'**/packages/font-all/**',
 			'**/packages/config/**/tests/**',
 		],
 	},

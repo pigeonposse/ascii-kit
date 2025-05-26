@@ -1,4 +1,4 @@
-# ascii-kit 
+# ASCII KIT 
 
 ## 🔑 Installation
 
