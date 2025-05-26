@@ -8,6 +8,7 @@ const config = setConfig(
 		package   : true,
 		yaml      : true,
 		jsdoc     : true,
+		html      : true,
 		md        : true,
 		gitignore : true,
 		ignore    : [

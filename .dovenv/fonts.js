@@ -238,7 +238,13 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		await Promise.all( flfFiles.map( async file => {
 
 			const filename    = getBaseName( file )
-			const fontNamePre = filename.replace( '.flf', '' ).replaceAll( ' ', '--' ).toLowerCase()
+			const fontNamePre = filename
+				.replace( '.flf', '' )
+				.replaceAll( ' ', '--' )
+				.replaceAll( '`', '' )
+				.replaceAll( '"', '' )
+				.replaceAll( '\'', '' )
+				.toLowerCase()
 
 			if ( fonts.has( fontNamePre ) ) return
 

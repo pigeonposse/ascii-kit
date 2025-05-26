@@ -4,7 +4,7 @@ import './style.css'
 const $textForm  = document.getElementById( 'form-text' ) as HTMLFormElement
 const $imageForm = document.querySelector( '#form-image > form' ) as HTMLFormElement
 const $svgForm   = document.getElementById( 'form-svg' ) as HTMLFormElement
-const $resDiv    = document.getElementById( 'result' ) as HTMLDivElement
+const $resDiv    = document.getElementById( 'result' ) as HTMLPreElement
 const $tabs      = document.querySelectorAll( '[role="tab"]' ) as NodeListOf<HTMLButtonElement>
 const $tabPanels = document.querySelectorAll( '[role="tabpanel"]' ) as NodeListOf<HTMLDivElement>
 

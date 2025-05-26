@@ -19,4 +19,7 @@ Bun.serve( {
 		return new Response( 'Not Found', { status: 404 } )
 
 	},
+	port : 3000,
 } )
+
+console.log( 'Listening on http://localhost:3000' )

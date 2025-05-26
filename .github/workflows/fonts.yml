@@ -2,8 +2,7 @@
 # RELEASE
 ###############################################################################
 
-name: ✅ Tests and check for updates
-
+name: ✅ Add font packages
 on:
   workflow_dispatch:
 
