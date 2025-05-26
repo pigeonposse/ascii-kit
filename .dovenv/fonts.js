@@ -243,6 +243,8 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 				.replaceAll( ' ', '--' )
 				.replaceAll( '`', '' )
 				.replaceAll( '"', '' )
+				.replaceAll( '!', '' )
+				.replaceAll( '?', '' )
 				.replaceAll( '\'', '' )
 				.toLowerCase()
 
