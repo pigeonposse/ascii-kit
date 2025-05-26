@@ -5,20 +5,20 @@
 		<title>ASCII Font Viewer</title>
 		<style>
 			body {
-			font-family: sans-serif;
-			padding: 2em;
+				font-family: sans-serif;
+				padding: 2em;
 			}
 			select {
-			font-size: 1em;
-			margin-bottom: 1em;
+				font-size: 1em;
+				margin-bottom: 1em;
 			}
 			pre {
-			font-family: monospace;
-			white-space: pre;
-			background: #f4f4f4;
-			padding: 1em;
-			border-radius: 5px;
-			border: 1px solid #ccc;
+				font-family: monospace;
+				white-space: pre;
+				background: #f4f4f4;
+				padding: 1em;
+				border-radius: 5px;
+				border: 1px solid #ccc;
 			}
 		</style>
 	</head>
@@ -33,17 +33,13 @@
 
 		<script type="module">
 
-	import {Font} from 'https://cdn.jsdelivr.net/npm/@ascii-kit/font@0.0.2/+esm'
-
     const fontSelect = document.getElementById('fontSelect');
     const outputEl = document.getElementById('output');
-    const apiUrl = 'fonts';
 
-    // Load list of font names
     async function loadFontList() {
       try {
-        const res = await fetch(apiUrl);
-        const fontNames = await res.json();
+        const res = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/+esm');
+        const fontNames = res.default
 
         fontSelect.innerHTML = '<option value="">-- Select a font --</option>';
         fontNames.forEach(name => {
@@ -68,11 +64,13 @@
       outputEl.textContent = `Loading font "${name}"...`;
 
       try {
-        const fontModule = await import(`https://unpkg.com/@ascii-kit/font-${name}/dist/index.js`);
-		console.log(fontModule)
+		const {Font} = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/font/+esm')
+		const fontModule = await import(`https://cdn.jsdelivr.net/npm/@ascii-kit/font-${name}/+esm`);
+        // const fontModule = await import(`https://unpkg.com/@ascii-kit/font-${name}/dist/index.js`);
 		const font = new Font(fontModule.default)
         const asciiText = await font.text('Hello!');
-        outputEl.textContent = asciiText;
+        outputEl.textContent = asciiText
+
       } catch (e) {
         outputEl.textContent = `Error loading font "${name}":\n\n${e.message}`;
       }
