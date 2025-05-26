@@ -19,18 +19,21 @@ importers:
         version: 1.5.18
       '@dovenv/theme-pigeonposse':
         specifier: 1.5.18
-        version: 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)
+        version: 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)
       '@playwright/test':
         specifier: 1.52.0
         version: 1.52.0
+      '@types/bun':
+        specifier: ^1.2.14
+        version: 1.2.14
       '@types/node':
         specifier: 22.15.21
         version: 22.15.21
       astring:
-        specifier: ^1.9.0
+        specifier: 1.9.0
         version: 1.9.0
       basic-ftp:
-        specifier: ^5.0.5
+        specifier: 5.0.5
         version: 5.0.5
       eslint:
         specifier: 9.27.0
@@ -83,6 +86,1268 @@ importers:
 
   packages/fonts-all: {}
 
+  packages/fonts/1943____: {}
+
+  packages/fonts/1row: {}
+
+  packages/fonts/3-d: {}
+
+  packages/fonts/3d: {}
+
+  packages/fonts/3d--diagonal: {}
+
+  packages/fonts/3d-ascii: {}
+
+  packages/fonts/3d_diagonal: {}
+
+  packages/fonts/3x5: {}
+
+  packages/fonts/4max: {}
+
+  packages/fonts/4x4_offr: {}
+
+  packages/fonts/5--line--oblique: {}
+
+  packages/fonts/5lineoblique: {}
+
+  packages/fonts/5x7: {}
+
+  packages/fonts/5x8: {}
+
+  packages/fonts/64f1____: {}
+
+  packages/fonts/6x10: {}
+
+  packages/fonts/6x9: {}
+
+  packages/fonts/a_zooloo: {}
+
+  packages/fonts/acrobatic: {}
+
+  packages/fonts/advenger: {}
+
+  packages/fonts/alligator: {}
+
+  packages/fonts/alligator2: {}
+
+  packages/fonts/alligator3: {}
+
+  packages/fonts/alpha: {}
+
+  packages/fonts/alphabet: {}
+
+  packages/fonts/amc--3--line: {}
+
+  packages/fonts/amc--3--liv1: {}
+
+  packages/fonts/amc--aaa01: {}
+
+  packages/fonts/amc--neko: {}
+
+  packages/fonts/amc--razor: {}
+
+  packages/fonts/amc--razor2: {}
+
+  packages/fonts/amc--slash: {}
+
+  packages/fonts/amc--slider: {}
+
+  packages/fonts/amc--thin: {}
+
+  packages/fonts/amc--tubes: {}
+
+  packages/fonts/amc--untitled: {}
+
+  packages/fonts/amc3line: {}
+
+  packages/fonts/amc3liv1: {}
+
+  packages/fonts/amcaaa01: {}
+
+  packages/fonts/amcneko: {}
+
+  packages/fonts/amcrazo2: {}
+
+  packages/fonts/amcrazor: {}
+
+  packages/fonts/amcslash: {}
+
+  packages/fonts/amcslder: {}
+
+  packages/fonts/amcthin: {}
+
+  packages/fonts/amctubes: {}
+
+  packages/fonts/amcun1: {}
+
+  packages/fonts/ansi--regular: {}
+
+  packages/fonts/ansi--shadow: {}
+
+  packages/fonts/aquaplan: {}
+
+  packages/fonts/arrows: {}
+
+  packages/fonts/asc_____: {}
+
+  packages/fonts/ascii--new--roman: {}
+
+  packages/fonts/ascii___: {}
+
+  packages/fonts/ascii_new_roman: {}
+
+  packages/fonts/assalt_m: {}
+
+  packages/fonts/asslt__m: {}
+
+  packages/fonts/atc_____: {}
+
+  packages/fonts/atc_gran: {}
+
+  packages/fonts/avatar: {}
+
+  packages/fonts/b1ff: {}
+
+  packages/fonts/b_m__200: {}
+
+  packages/fonts/banner: {}
+
+  packages/fonts/banner3: {}
+
+  packages/fonts/banner3-d: {}
+
+  packages/fonts/banner4: {}
+
+  packages/fonts/barbwire: {}
+
+  packages/fonts/basic: {}
+
+  packages/fonts/battle_s: {}
+
+  packages/fonts/battlesh: {}
+
+  packages/fonts/baz__bil: {}
+
+  packages/fonts/bear: {}
+
+  packages/fonts/beer_pub: {}
+
+  packages/fonts/bell: {}
+
+  packages/fonts/benjamin: {}
+
+  packages/fonts/big: {}
+
+  packages/fonts/big--chief: {}
+
+  packages/fonts/big--money-ne: {}
+
+  packages/fonts/big--money-nw: {}
+
+  packages/fonts/big--money-se: {}
+
+  packages/fonts/big--money-sw: {}
+
+  packages/fonts/bigchief: {}
+
+  packages/fonts/bigfig: {}
+
+  packages/fonts/binary: {}
+
+  packages/fonts/block: {}
+
+  packages/fonts/blocks: {}
+
+  packages/fonts/bloody: {}
+
+  packages/fonts/bolger: {}
+
+  packages/fonts/braced: {}
+
+  packages/fonts/bright: {}
+
+  packages/fonts/brite: {}
+
+  packages/fonts/briteb: {}
+
+  packages/fonts/britebi: {}
+
+  packages/fonts/britei: {}
+
+  packages/fonts/broadway: {}
+
+  packages/fonts/broadway--kb: {}
+
+  packages/fonts/broadway_kb: {}
+
+  packages/fonts/bubble: {}
+
+  packages/fonts/bubble__: {}
+
+  packages/fonts/bubble_b: {}
+
+  packages/fonts/bulbhead: {}
+
+  packages/fonts/c1______: {}
+
+  packages/fonts/c2______: {}
+
+  packages/fonts/c_ascii_: {}
+
+  packages/fonts/c_consen: {}
+
+  packages/fonts/calgphy2: {}
+
+  packages/fonts/caligraphy: {}
+
+  packages/fonts/caligraphy2: {}
+
+  packages/fonts/calvin--s: {}
+
+  packages/fonts/cards: {}
+
+  packages/fonts/catwalk: {}
+
+  packages/fonts/caus_in_: {}
+
+  packages/fonts/char1___: {}
+
+  packages/fonts/char2___: {}
+
+  packages/fonts/char3___: {}
+
+  packages/fonts/char4___: {}
+
+  packages/fonts/charact1: {}
+
+  packages/fonts/charact2: {}
+
+  packages/fonts/charact3: {}
+
+  packages/fonts/charact4: {}
+
+  packages/fonts/charact5: {}
+
+  packages/fonts/charact6: {}
+
+  packages/fonts/characte: {}
+
+  packages/fonts/charset_: {}
+
+  packages/fonts/chartr: {}
+
+  packages/fonts/chartri: {}
+
+  packages/fonts/chiseled: {}
+
+  packages/fonts/chunky: {}
+
+  packages/fonts/clb6x10: {}
+
+  packages/fonts/clb8x10: {}
+
+  packages/fonts/clb8x8: {}
+
+  packages/fonts/cli8x8: {}
+
+  packages/fonts/clr4x6: {}
+
+  packages/fonts/clr5x10: {}
+
+  packages/fonts/clr5x6: {}
+
+  packages/fonts/clr5x8: {}
+
+  packages/fonts/clr6x10: {}
+
+  packages/fonts/clr6x6: {}
+
+  packages/fonts/clr6x8: {}
+
+  packages/fonts/clr7x10: {}
+
+  packages/fonts/clr7x8: {}
+
+  packages/fonts/clr8x10: {}
+
+  packages/fonts/clr8x8: {}
+
+  packages/fonts/coil_cop: {}
+
+  packages/fonts/coinstak: {}
+
+  packages/fonts/cola: {}
+
+  packages/fonts/colossal: {}
+
+  packages/fonts/com_sen_: {}
+
+  packages/fonts/computer: {}
+
+  packages/fonts/contessa: {}
+
+  packages/fonts/contrast: {}
+
+  packages/fonts/convoy__: {}
+
+  packages/fonts/cosmic: {}
+
+  packages/fonts/cosmike: {}
+
+  packages/fonts/cour: {}
+
+  packages/fonts/courb: {}
+
+  packages/fonts/courbi: {}
+
+  packages/fonts/couri: {}
+
+  packages/fonts/crawford: {}
+
+  packages/fonts/crawford2: {}
+
+  packages/fonts/crazy: {}
+
+  packages/fonts/cricket: {}
+
+  packages/fonts/cursive: {}
+
+  packages/fonts/cyberlarge: {}
+
+  packages/fonts/cybermedium: {}
+
+  packages/fonts/cybersmall: {}
+
+  packages/fonts/cygnet: {}
+
+  packages/fonts/d_dragon: {}
+
+  packages/fonts/danc4: {}
+
+  packages/fonts/dancing--font: {}
+
+  packages/fonts/dancingfont: {}
+
+  packages/fonts/dcs_bfmo: {}
+
+  packages/fonts/decimal: {}
+
+  packages/fonts/deep_str: {}
+
+  packages/fonts/def--leppard: {}
+
+  packages/fonts/defleppard: {}
+
+  packages/fonts/delta--corps--priest--1: {}
+
+  packages/fonts/demo_1__: {}
+
+  packages/fonts/demo_2__: {}
+
+  packages/fonts/demo_m__: {}
+
+  packages/fonts/devilish: {}
+
+  packages/fonts/diamond: {}
+
+  packages/fonts/diet--cola: {}
+
+  packages/fonts/dietcola: {}
+
+  packages/fonts/digital: {}
+
+  packages/fonts/doh: {}
+
+  packages/fonts/doom: {}
+
+  packages/fonts/dos--rebel: {}
+
+  packages/fonts/dosrebel: {}
+
+  packages/fonts/dot--matrix: {}
+
+  packages/fonts/dotmatrix: {}
+
+  packages/fonts/double: {}
+
+  packages/fonts/double--shorts: {}
+
+  packages/fonts/doubleshorts: {}
+
+  packages/fonts/dr--pepper: {}
+
+  packages/fonts/drpepper: {}
+
+  packages/fonts/druid___: {}
+
+  packages/fonts/dwhistled: {}
+
+  packages/fonts/e__fist_: {}
+
+  packages/fonts/ebbs_1__: {}
+
+  packages/fonts/ebbs_2__: {}
+
+  packages/fonts/eca_____: {}
+
+  packages/fonts/efti--chess: {}
+
+  packages/fonts/efti--font: {}
+
+  packages/fonts/efti--italic: {}
+
+  packages/fonts/efti--piti: {}
+
+  packages/fonts/efti--robot: {}
+
+  packages/fonts/efti--wall: {}
+
+  packages/fonts/efti--water: {}
+
+  packages/fonts/eftichess: {}
+
+  packages/fonts/eftifont: {}
+
+  packages/fonts/eftipiti: {}
+
+  packages/fonts/eftirobot: {}
+
+  packages/fonts/eftitalic: {}
+
+  packages/fonts/eftiwall: {}
+
+  packages/fonts/eftiwater: {}
+
+  packages/fonts/electronic: {}
+
+  packages/fonts/elite: {}
+
+  packages/fonts/epic: {}
+
+  packages/fonts/etcrvs__: {}
+
+  packages/fonts/f15_____: {}
+
+  packages/fonts/faces_of: {}
+
+  packages/fonts/fair_mea: {}
+
+  packages/fonts/fairligh: {}
+
+  packages/fonts/fantasy_: {}
+
+  packages/fonts/fbr12___: {}
+
+  packages/fonts/fbr1____: {}
+
+  packages/fonts/fbr2____: {}
+
+  packages/fonts/fbr_stri: {}
+
+  packages/fonts/fbr_tilt: {}
+
+  packages/fonts/fender: {}
+
+  packages/fonts/filter: {}
+
+  packages/fonts/finalass: {}
+
+  packages/fonts/fire--font-k: {}
+
+  packages/fonts/fire--font-s: {}
+
+  packages/fonts/fire_font-k: {}
+
+  packages/fonts/fire_font-s: {}
+
+  packages/fonts/fireing_: {}
+
+  packages/fonts/flipped: {}
+
+  packages/fonts/flower--power: {}
+
+  packages/fonts/flowerpower: {}
+
+  packages/fonts/flyn_sh: {}
+
+  packages/fonts/four--tops: {}
+
+  packages/fonts/fourtops: {}
+
+  packages/fonts/fp1_____: {}
+
+  packages/fonts/fp2_____: {}
+
+  packages/fonts/fraktur: {}
+
+  packages/fonts/fun--face: {}
+
+  packages/fonts/fun--faces: {}
+
+  packages/fonts/funface: {}
+
+  packages/fonts/funfaces: {}
+
+  packages/fonts/funky_dr: {}
+
+  packages/fonts/future_1: {}
+
+  packages/fonts/future_2: {}
+
+  packages/fonts/future_3: {}
+
+  packages/fonts/future_4: {}
+
+  packages/fonts/future_5: {}
+
+  packages/fonts/future_6: {}
+
+  packages/fonts/future_7: {}
+
+  packages/fonts/future_8: {}
+
+  packages/fonts/fuzzy: {}
+
+  packages/fonts/gauntlet: {}
+
+  packages/fonts/georgi16: {}
+
+  packages/fonts/georgia11: {}
+
+  packages/fonts/ghost: {}
+
+  packages/fonts/ghost_bo: {}
+
+  packages/fonts/ghoulish: {}
+
+  packages/fonts/glenyn: {}
+
+  packages/fonts/goofy: {}
+
+  packages/fonts/gothic: {}
+
+  packages/fonts/gothic__: {}
+
+  packages/fonts/graceful: {}
+
+  packages/fonts/gradient: {}
+
+  packages/fonts/graffiti: {}
+
+  packages/fonts/grand_pr: {}
+
+  packages/fonts/greek: {}
+
+  packages/fonts/green_be: {}
+
+  packages/fonts/hades___: {}
+
+  packages/fonts/halfiwi: {}
+
+  packages/fonts/heart--left: {}
+
+  packages/fonts/heart--right: {}
+
+  packages/fonts/heart_left: {}
+
+  packages/fonts/heart_right: {}
+
+  packages/fonts/heavy_me: {}
+
+  packages/fonts/helv: {}
+
+  packages/fonts/helvb: {}
+
+  packages/fonts/helvbi: {}
+
+  packages/fonts/helvi: {}
+
+  packages/fonts/henry--3d: {}
+
+  packages/fonts/henry3d: {}
+
+  packages/fonts/heroboti: {}
+
+  packages/fonts/hex: {}
+
+  packages/fonts/hieroglyphs: {}
+
+  packages/fonts/high_noo: {}
+
+  packages/fonts/hills___: {}
+
+  packages/fonts/hollywood: {}
+
+  packages/fonts/home_pak: {}
+
+  packages/fonts/horizontal--left: {}
+
+  packages/fonts/horizontal--right: {}
+
+  packages/fonts/horizontalleft: {}
+
+  packages/fonts/horizontalright: {}
+
+  packages/fonts/house_of: {}
+
+  packages/fonts/hypa_bal: {}
+
+  packages/fonts/hyper___: {}
+
+  packages/fonts/icl-1900: {}
+
+  packages/fonts/impossible: {}
+
+  packages/fonts/inc_raw_: {}
+
+  packages/fonts/invita: {}
+
+  packages/fonts/isometric1: {}
+
+  packages/fonts/isometric2: {}
+
+  packages/fonts/isometric3: {}
+
+  packages/fonts/isometric4: {}
+
+  packages/fonts/italic: {}
+
+  packages/fonts/italics_: {}
+
+  packages/fonts/ivrit: {}
+
+  packages/fonts/jacky: {}
+
+  packages/fonts/jazmine: {}
+
+  packages/fonts/jerusalem: {}
+
+  packages/fonts/joust___: {}
+
+  packages/fonts/js--block--letters: {}
+
+  packages/fonts/js--bracket--letters: {}
+
+  packages/fonts/js--capital--curves: {}
+
+  packages/fonts/js--cursive: {}
+
+  packages/fonts/js--stick--letters: {}
+
+  packages/fonts/katakana: {}
+
+  packages/fonts/kban: {}
+
+  packages/fonts/keyboard: {}
+
+  packages/fonts/kgames_i: {}
+
+  packages/fonts/kik_star: {}
+
+  packages/fonts/knob: {}
+
+  packages/fonts/koholint: {}
+
+  packages/fonts/kompaktblk: {}
+
+  packages/fonts/konto: {}
+
+  packages/fonts/konto--slant: {}
+
+  packages/fonts/kontoslant: {}
+
+  packages/fonts/krak_out: {}
+
+  packages/fonts/l4me: {}
+
+  packages/fonts/larry--3d: {}
+
+  packages/fonts/larry--3d--2: {}
+
+  packages/fonts/larry3d: {}
+
+  packages/fonts/lazy_jon: {}
+
+  packages/fonts/lcd: {}
+
+  packages/fonts/lean: {}
+
+  packages/fonts/letter_w: {}
+
+  packages/fonts/letters: {}
+
+  packages/fonts/letterw3: {}
+
+  packages/fonts/lexible_: {}
+
+  packages/fonts/lil--devil: {}
+
+  packages/fonts/lildevil: {}
+
+  packages/fonts/line--blocks: {}
+
+  packages/fonts/lineblocks: {}
+
+  packages/fonts/linux: {}
+
+  packages/fonts/lockergnome: {}
+
+  packages/fonts/mad_nurs: {}
+
+  packages/fonts/madrid: {}
+
+  packages/fonts/magic_ma: {}
+
+  packages/fonts/marquee: {}
+
+  packages/fonts/master_o: {}
+
+  packages/fonts/maxfour: {}
+
+  packages/fonts/maxiwi: {}
+
+  packages/fonts/mayhem_d: {}
+
+  packages/fonts/mcg_____: {}
+
+  packages/fonts/merlin1: {}
+
+  packages/fonts/merlin2: {}
+
+  packages/fonts/mig_ally: {}
+
+  packages/fonts/mike: {}
+
+  packages/fonts/mini: {}
+
+  packages/fonts/miniwi: {}
+
+  packages/fonts/mirror: {}
+
+  packages/fonts/mnemonic: {}
+
+  packages/fonts/modern__: {}
+
+  packages/fonts/modular: {}
+
+  packages/fonts/morse: {}
+
+  packages/fonts/morse2: {}
+
+  packages/fonts/moscow: {}
+
+  packages/fonts/mshebrew210: {}
+
+  packages/fonts/muzzle: {}
+
+  packages/fonts/nancyj: {}
+
+  packages/fonts/nancyj-fancy: {}
+
+  packages/fonts/nancyj-improved: {}
+
+  packages/fonts/nancyj-underlined: {}
+
+  packages/fonts/new_asci: {}
+
+  packages/fonts/nfi1____: {}
+
+  packages/fonts/nipples: {}
+
+  packages/fonts/notie_ca: {}
+
+  packages/fonts/npn_____: {}
+
+  packages/fonts/nscript: {}
+
+  packages/fonts/nt--greek: {}
+
+  packages/fonts/ntgreek: {}
+
+  packages/fonts/nv--script: {}
+
+  packages/fonts/nvscript: {}
+
+  packages/fonts/o8: {}
+
+  packages/fonts/octal: {}
+
+  packages/fonts/odel_lak: {}
+
+  packages/fonts/ogre: {}
+
+  packages/fonts/ok_beer_: {}
+
+  packages/fonts/old--banner: {}
+
+  packages/fonts/oldbanner: {}
+
+  packages/fonts/os2: {}
+
+  packages/fonts/outrun__: {}
+
+  packages/fonts/p_s_h_m_: {}
+
+  packages/fonts/p_skateb: {}
+
+  packages/fonts/pacos_pe: {}
+
+  packages/fonts/panther_: {}
+
+  packages/fonts/patorjk's--cheese: {}
+
+  packages/fonts/patorjk-hex: {}
+
+  packages/fonts/pawn_ins: {}
+
+  packages/fonts/pawp: {}
+
+  packages/fonts/peaks: {}
+
+  packages/fonts/peaks--slant: {}
+
+  packages/fonts/peaksslant: {}
+
+  packages/fonts/pebbles: {}
+
+  packages/fonts/pepper: {}
+
+  packages/fonts/phonix__: {}
+
+  packages/fonts/platoon2: {}
+
+  packages/fonts/platoon_: {}
+
+  packages/fonts/pod_____: {}
+
+  packages/fonts/poison: {}
+
+  packages/fonts/puffy: {}
+
+  packages/fonts/puzzle: {}
+
+  packages/fonts/pyramid: {}
+
+  packages/fonts/r2-d2___: {}
+
+  packages/fonts/rad_____: {}
+
+  packages/fonts/rad_phan: {}
+
+  packages/fonts/radical_: {}
+
+  packages/fonts/rainbow_: {}
+
+  packages/fonts/rally_s2: {}
+
+  packages/fonts/rally_sp: {}
+
+  packages/fonts/rammstein: {}
+
+  packages/fonts/rampage_: {}
+
+  packages/fonts/rastan__: {}
+
+  packages/fonts/raw_recu: {}
+
+  packages/fonts/rci_____: {}
+
+  packages/fonts/rectangles: {}
+
+  packages/fonts/red--phoenix: {}
+
+  packages/fonts/red_phoenix: {}
+
+  packages/fonts/relief: {}
+
+  packages/fonts/relief2: {}
+
+  packages/fonts/rev: {}
+
+  packages/fonts/reverse: {}
+
+  packages/fonts/ripper!_: {}
+
+  packages/fonts/road_rai: {}
+
+  packages/fonts/rockbox_: {}
+
+  packages/fonts/rok_____: {}
+
+  packages/fonts/roman: {}
+
+  packages/fonts/roman___: {}
+
+  packages/fonts/rot13: {}
+
+  packages/fonts/rotated: {}
+
+  packages/fonts/rounded: {}
+
+  packages/fonts/rowan--cap: {}
+
+  packages/fonts/rowancap: {}
+
+  packages/fonts/rozzo: {}
+
+  packages/fonts/runic: {}
+
+  packages/fonts/runyc: {}
+
+  packages/fonts/s--blood: {}
+
+  packages/fonts/s-relief: {}
+
+  packages/fonts/sans: {}
+
+  packages/fonts/sansb: {}
+
+  packages/fonts/sansbi: {}
+
+  packages/fonts/sansi: {}
+
+  packages/fonts/santa--clara: {}
+
+  packages/fonts/santaclara: {}
+
+  packages/fonts/sblood: {}
+
+  packages/fonts/sbook: {}
+
+  packages/fonts/sbookb: {}
+
+  packages/fonts/sbookbi: {}
+
+  packages/fonts/sbooki: {}
+
+  packages/fonts/script: {}
+
+  packages/fonts/script__: {}
+
+  packages/fonts/serifcap: {}
+
+  packages/fonts/shadow: {}
+
+  packages/fonts/shimrod: {}
+
+  packages/fonts/short: {}
+
+  packages/fonts/six-fo: {}
+
+  packages/fonts/skate_ro: {}
+
+  packages/fonts/skateord: {}
+
+  packages/fonts/skateroc: {}
+
+  packages/fonts/sketch_s: {}
+
+  packages/fonts/sl--script: {}
+
+  packages/fonts/slant: {}
+
+  packages/fonts/slant--relief: {}
+
+  packages/fonts/slide: {}
+
+  packages/fonts/slscript: {}
+
+  packages/fonts/sm______: {}
+
+  packages/fonts/small: {}
+
+  packages/fonts/small--caps: {}
+
+  packages/fonts/small--isometric1: {}
+
+  packages/fonts/small--keyboard: {}
+
+  packages/fonts/small--poison: {}
+
+  packages/fonts/small--script: {}
+
+  packages/fonts/small--shadow: {}
+
+  packages/fonts/small--slant: {}
+
+  packages/fonts/small--tengwar: {}
+
+  packages/fonts/smallcaps: {}
+
+  packages/fonts/smisome1: {}
+
+  packages/fonts/smkeyboard: {}
+
+  packages/fonts/smpoison: {}
+
+  packages/fonts/smscript: {}
+
+  packages/fonts/smshadow: {}
+
+  packages/fonts/smslant: {}
+
+  packages/fonts/smtengwar: {}
+
+  packages/fonts/soft: {}
+
+  packages/fonts/space_op: {}
+
+  packages/fonts/spc_demo: {}
+
+  packages/fonts/speed: {}
+
+  packages/fonts/spliff: {}
+
+  packages/fonts/stacey: {}
+
+  packages/fonts/stampate: {}
+
+  packages/fonts/stampatello: {}
+
+  packages/fonts/standard: {}
+
+  packages/fonts/star--strips: {}
+
+  packages/fonts/star--wars: {}
+
+  packages/fonts/star_war: {}
+
+  packages/fonts/starstrips: {}
+
+  packages/fonts/starwars: {}
+
+  packages/fonts/stealth_: {}
+
+  packages/fonts/stellar: {}
+
+  packages/fonts/stencil: {}
+
+  packages/fonts/stencil1: {}
+
+  packages/fonts/stencil2: {}
+
+  packages/fonts/stforek: {}
+
+  packages/fonts/stick--letters: {}
+
+  packages/fonts/stop: {}
+
+  packages/fonts/straight: {}
+
+  packages/fonts/street_s: {}
+
+  packages/fonts/stronger--than--all: {}
+
+  packages/fonts/sub-zero: {}
+
+  packages/fonts/subteran: {}
+
+  packages/fonts/super_te: {}
+
+  packages/fonts/swamp--land: {}
+
+  packages/fonts/swampland: {}
+
+  packages/fonts/swan: {}
+
+  packages/fonts/sweet: {}
+
+  packages/fonts/t__of_ap: {}
+
+  packages/fonts/tanja: {}
+
+  packages/fonts/tav1____: {}
+
+  packages/fonts/taxi____: {}
+
+  packages/fonts/tec1____: {}
+
+  packages/fonts/tec_7000: {}
+
+  packages/fonts/tecrvs__: {}
+
+  packages/fonts/tengwar: {}
+
+  packages/fonts/term: {}
+
+  packages/fonts/test1: {}
+
+  packages/fonts/the--edge: {}
+
+  packages/fonts/thick: {}
+
+  packages/fonts/thin: {}
+
+  packages/fonts/this: {}
+
+  packages/fonts/thorned: {}
+
+  packages/fonts/three--point: {}
+
+  packages/fonts/threepoint: {}
+
+  packages/fonts/ti_pan__: {}
+
+  packages/fonts/ticks: {}
+
+  packages/fonts/ticks--slant: {}
+
+  packages/fonts/ticksslant: {}
+
+  packages/fonts/tiles: {}
+
+  packages/fonts/times: {}
+
+  packages/fonts/timesofl: {}
+
+  packages/fonts/tinker-toy: {}
+
+  packages/fonts/tomahawk: {}
+
+  packages/fonts/tombstone: {}
+
+  packages/fonts/top_duck: {}
+
+  packages/fonts/train: {}
+
+  packages/fonts/trashman: {}
+
+  packages/fonts/trek: {}
+
+  packages/fonts/triad_st: {}
+
+  packages/fonts/ts1_____: {}
+
+  packages/fonts/tsalagi: {}
+
+  packages/fonts/tsm_____: {}
+
+  packages/fonts/tsn_base: {}
+
+  packages/fonts/tty: {}
+
+  packages/fonts/ttyb: {}
+
+  packages/fonts/tubes-regular: {}
+
+  packages/fonts/tubes-smushed: {}
+
+  packages/fonts/tubular: {}
+
+  packages/fonts/twin_cob: {}
+
+  packages/fonts/twisted: {}
+
+  packages/fonts/two--point: {}
+
+  packages/fonts/twopoint: {}
+
+  packages/fonts/type_set: {}
+
+  packages/fonts/ublk: {}
+
+  packages/fonts/ucf_fan_: {}
+
+  packages/fonts/ugalympi: {}
+
+  packages/fonts/unarmed_: {}
+
+  packages/fonts/univers: {}
+
+  packages/fonts/usa--flag: {}
+
+  packages/fonts/usa_____: {}
+
+  packages/fonts/usa_pq__: {}
+
+  packages/fonts/usaflag: {}
+
+  packages/fonts/utopia: {}
+
+  packages/fonts/utopiab: {}
+
+  packages/fonts/utopiabi: {}
+
+  packages/fonts/utopiai: {}
+
+  packages/fonts/varsity: {}
+
+  packages/fonts/vortron_: {}
+
+  packages/fonts/war_of_w: {}
+
+  packages/fonts/wavy: {}
+
+  packages/fonts/weird: {}
+
+  packages/fonts/wet--letter: {}
+
+  packages/fonts/wetletter: {}
+
+  packages/fonts/whimsy: {}
+
+  packages/fonts/wow: {}
+
+  packages/fonts/xbrite: {}
+
+  packages/fonts/xbriteb: {}
+
+  packages/fonts/xbritebi: {}
+
+  packages/fonts/xbritei: {}
+
+  packages/fonts/xchartr: {}
+
+  packages/fonts/xchartri: {}
+
+  packages/fonts/xcour: {}
+
+  packages/fonts/xcourb: {}
+
+  packages/fonts/xcourbi: {}
+
+  packages/fonts/xcouri: {}
+
+  packages/fonts/xhelv: {}
+
+  packages/fonts/xhelvb: {}
+
+  packages/fonts/xhelvbi: {}
+
+  packages/fonts/xhelvi: {}
+
+  packages/fonts/xsans: {}
+
+  packages/fonts/xsansb: {}
+
+  packages/fonts/xsansbi: {}
+
+  packages/fonts/xsansi: {}
+
+  packages/fonts/xsbook: {}
+
+  packages/fonts/xsbookb: {}
+
+  packages/fonts/xsbookbi: {}
+
+  packages/fonts/xsbooki: {}
+
+  packages/fonts/xtimes: {}
+
+  packages/fonts/xtty: {}
+
+  packages/fonts/xttyb: {}
+
+  packages/fonts/yie-ar__: {}
+
+  packages/fonts/yie_ar_k: {}
+
+  packages/fonts/z-pilot_: {}
+
+  packages/fonts/zig_zag_: {}
+
+  packages/fonts/zone7___: {}
+
   packages/image:
     dependencies:
       jimp-compact:
@@ -126,20 +1391,19 @@ importers:
         version: link:../_config
 
   packages/web:
-    dependencies:
+    devDependencies:
       '@ascii-kit/font':
         specifier: workspace:*
         version: link:../font
       '@ascii-kit/image':
         specifier: workspace:*
         version: link:../image
-      '@ascii-kit/svg':
-        specifier: workspace:*
-        version: link:../svg
-    devDependencies:
       '@ascii-kit/repo-config':
         specifier: workspace:*
         version: link:../_config
+      '@ascii-kit/svg':
+        specifier: workspace:*
+        version: link:../svg
 
 packages:
 
@@ -1841,6 +3105,9 @@ packages:
   '@tybys/wasm-util@0.9.0':
     resolution: {integrity: sha512-6+7nlbMVX/PVDCwaIQ8nTOPveOcFLSt8GcXdx8hD0bt39uWxYT88uXzqTd4fTvqta7oeUJqudepapKNt2DYJFw==}
 
+  '@types/bun@1.2.14':
+    resolution: {integrity: sha512-VsFZKs8oKHzI7zwvECiAJ5oSorWndIWEVhfbYqZd4HI/45kzW7PN2Rr5biAzvGvRuNmYLSANY+H59ubHq8xw7Q==}
+
   '@types/conventional-commits-parser@5.0.1':
     resolution: {integrity: sha512-7uz5EHdzz2TqoMfV7ee61Egf5y6NkcO4FB/1iCCQnbeiI1F3xzv3vK5dBCXUCLQgGYS+mUeigK1iKQzvED+QnQ==}
 
@@ -2434,6 +3701,9 @@ packages:
 
   buffer@6.0.3:
     resolution: {integrity: sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==}
+
+  bun-types@1.2.14:
+    resolution: {integrity: sha512-Kuh4Ub28ucMRWeiUUWMHsT9Wcbr4H3kLIO72RZZElSDxSu7vpetRvxIUDUaW6QtaIeixIpm7OXtNnZPf82EzwA==}
 
   bundle-name@4.1.0:
     resolution: {integrity: sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==}
@@ -7740,7 +9010,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@dovenv/docs@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)':
+  '@dovenv/docs@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)':
     dependencies:
       '@dovenv/core': 1.5.18
       '@resvg/resvg-js': 2.6.2
@@ -7752,10 +9022,10 @@ snapshots:
       satori: 0.13.1
       satori-html: 0.3.2
       vite-plugin-full-reload: 1.2.0
-      vite-plugin-pwa: 1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
-      vite-plugin-restart: 0.4.2(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))
+      vite-plugin-pwa: 1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)
+      vite-plugin-restart: 0.4.2(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))
       vitepress: 1.6.3(@algolia/client-search@5.25.0)(@types/node@22.15.21)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)
-      vitepress-plugin-group-icons: 1.5.5(markdown-it@14.1.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))
+      vitepress-plugin-group-icons: 1.5.5(markdown-it@14.1.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))
       vitepress-plugin-llmstxt: 0.1.0(vitepress@1.6.3(@algolia/client-search@5.25.0)(@types/node@22.15.21)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3))
       vitepress-plugin-rss: 0.3.1(vitepress@1.6.3(@algolia/client-search@5.25.0)(@types/node@22.15.21)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3))
       vue: 3.5.14(typescript@5.8.3)
@@ -7879,11 +9149,11 @@ snapshots:
     dependencies:
       '@dovenv/core': 1.5.18
 
-  '@dovenv/theme-banda@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)':
+  '@dovenv/theme-banda@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)':
     dependencies:
       '@dovenv/convert': 1.5.18(@dovenv/core@1.5.18)(typescript@5.8.3)
       '@dovenv/core': 1.5.18
-      '@dovenv/docs': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
+      '@dovenv/docs': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)
       '@dovenv/examples': 1.5.18(@dovenv/core@1.5.18)
       '@dovenv/lint': 1.5.18(@dovenv/core@1.5.18)(@types/node@22.15.21)(typescript@5.8.3)
       '@dovenv/repo': 1.5.18(@dovenv/core@1.5.18)
@@ -7927,12 +9197,12 @@ snapshots:
       - workbox-build
       - workbox-window
 
-  '@dovenv/theme-pigeonposse@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)':
+  '@dovenv/theme-pigeonposse@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)':
     dependencies:
       '@dovenv/core': 1.5.18
       '@dovenv/eslint-config': 1.5.18(@types/estree@1.0.7)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))
       '@dovenv/stylelint-config': 1.5.18(stylelint@16.19.1(typescript@5.8.3))
-      '@dovenv/theme-banda': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
+      '@dovenv/theme-banda': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)
     transitivePeerDependencies:
       - '@75lb/nature'
       - '@algolia/client-search'
@@ -8864,6 +10134,10 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
+  '@types/bun@1.2.14':
+    dependencies:
+      bun-types: 1.2.14
+
   '@types/conventional-commits-parser@5.0.1':
     dependencies:
       '@types/node': 22.15.21
@@ -9506,6 +10780,10 @@ snapshots:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
+
+  bun-types@1.2.14:
+    dependencies:
+      '@types/node': 22.15.21
 
   bundle-name@4.1.0:
     dependencies:
@@ -13900,12 +15178,12 @@ snapshots:
       picocolors: 1.1.1
       picomatch: 2.3.1
 
-  vite-plugin-pwa@1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0):
+  vite-plugin-pwa@1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0):
     dependencies:
       debug: 4.4.1
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.13
-      vite: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)
+      vite: 5.4.19(@types/node@22.15.21)(terser@5.39.2)
       workbox-build: 7.3.0
       workbox-window: 7.3.0
     optionalDependencies:
@@ -13913,10 +15191,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-restart@0.4.2(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)):
+  vite-plugin-restart@0.4.2(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2)):
     dependencies:
       micromatch: 4.0.8
-      vite: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)
+      vite: 5.4.19(@types/node@22.15.21)(terser@5.39.2)
 
   vite@5.4.19(@types/node@22.15.21)(terser@5.39.2):
     dependencies:
@@ -13944,13 +15222,13 @@ snapshots:
       tsx: 4.19.4
       yaml: 2.8.0
 
-  vitepress-plugin-group-icons@1.5.5(markdown-it@14.1.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)):
+  vitepress-plugin-group-icons@1.5.5(markdown-it@14.1.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2)):
     dependencies:
       '@iconify-json/logos': 1.2.4
       '@iconify-json/vscode-icons': 1.2.21
       '@iconify/utils': 2.3.0
       markdown-it: 14.1.0
-      vite: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)
+      vite: 5.4.19(@types/node@22.15.21)(terser@5.39.2)
     transitivePeerDependencies:
       - supports-color
 

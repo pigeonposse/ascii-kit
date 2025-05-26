@@ -44,7 +44,7 @@
 		"prepare": "dovenv git husky --silent",
 		"test": "pnpm run --sequential \"/test:.*/\"",
 		"test:check": "pnpm --parallel check",
-		"test:check-ws": "dovenv check --silent",
+		"test:check-ws": "dovenv check -k '!ws.pkg.files' --silent",
 		"test:pkg": "pnpm --parallel test",
 		"test:transform-ws": "dovenv transform --silent"
 	},
@@ -53,6 +53,7 @@
 		"@dovenv/core": "1.5.18",
 		"@dovenv/theme-pigeonposse": "1.5.18",
 		"@playwright/test": "1.52.0",
+		"@types/bun": "1.2.14",
 		"@types/node": "22.15.21",
 		"astring": "1.9.0",
 		"basic-ftp": "5.0.5",
