@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="<%=LANG%>">
 	<head>
 		<meta charset="UTF-8">
 		<link
@@ -8,8 +8,8 @@
 			rel="icon"
 		>
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
-		<title>ASCII Kit | Convert text, image or svg to ASCII art</title>
-		<meta content="ASCII Kit | Convert text, image or svg to ASCII art" name="description">
+		<title><%=TITLE%></title>
+		<meta content="<%=DESC%>" name="description">
 		<style>
 			:root {
 				--theme-color: #44ba46;
@@ -17,6 +17,9 @@
 				--radius: 0px;
 				--text-color: white;
 				--input-bg-color: rgb(14, 14, 14);
+				--error-color: red;
+				--warn-color: yellow;
+				--info-color: blue;
 			}
 			body {
 				max-width: 960px;
@@ -99,7 +102,7 @@
 			}
 
 			textarea {
-				height: 150px;
+				height: 80px;
 			}
 			button {
 				background-color: var(--theme-color);
@@ -153,6 +156,13 @@
 			footer {
 				margin-top: 3rem;
 				text-align: center;
+				display: flex;
+				flex-direction: column;
+				align-content: center;
+				justify-content: center;
+				align-items: center;
+				gap: 30px;
+				flex-wrap: nowrap;
 			}
 			pre {
 				padding: 10px;
@@ -171,10 +181,7 @@
 			<p class="subtitle">Convert text, image or svg to ASCII art</p>
 		</header>
 		<main>
-
-			<div
-				class="tabs"
-			>
+			<div class="tabs">
 				<button
 					id="tab-text"
 					class="is-active"
@@ -200,7 +207,14 @@
 				>
 					SVG
 				</button>
-
+				<button
+					id="tab-info"
+					aria-controls="form-info"
+					aria-selected="false"
+					role="tab"
+				>
+					<span style="opacity: 0.6;">ⓘ</span>
+				</button>
 			</div>
 
 			<div class="tabs-content">
@@ -218,16 +232,18 @@
 						<select name="font">
 							<option value="">Loading fonts...</option>
 						</select>
-						<input
+						<textarea
 							id="text"
-							type="text"
 							name="text"
 							placeholder="Introduce text here..."
 							required
-							value="Hello world!"
-						>
+						></textarea>
 						<button type="submit">Generate</button>
 					</form>
+					<pre
+						id="result-text"
+						contenteditable="true"
+					></pre>
 				</div>
 
 				<div
@@ -241,7 +257,7 @@
 						action="/"
 						method="get"
 					>
-						<label class="file-label" >
+						<label class="file-label">
 							<input
 								type="file"
 								accept="image/*"
@@ -253,9 +269,12 @@
 								Select image
 							</span>
 						</label>
-
 						<button type="submit">Generate</button>
 					</form>
+					<pre
+						id="result-image"
+						contenteditable="true"
+					></pre>
 				</div>
 
 				<div
@@ -268,19 +287,53 @@
 						<textarea class="textarea" placeholder="Introduce SVG text here..."></textarea>
 						<button type="submit">Generate</button>
 					</form>
+					<pre
+						id="result-svg"
+						contenteditable="true"
+					></pre>
+				</div>
+
+				<div
+					id="form-info"
+					aria-labelledby="tab-info"
+					role="tabpanel"
+				>
+					<h2>ASCII KIT - Information</h2>
+					<div>
+						<p>
+							<strong>ASCII Kit</strong>
+							is an open source tool that converts text, images, or SVG files into ASCII art. It's designed to work both as a web utility and a reusable JavaScript library for developers.
+						</p>
+						<p>
+							The project is designed to be modular and extensible. Rather than reinventing the wheel,
+							<strong>ASCII Kit</strong>
+							integrates existing and established projects. For example, the text converter uses
+							<a href="http://www.figlet.org/">figfonts</a>
+							and the rendering engine is a simpler remake of
+							<a href="https://github.com/patorjk/figlet.js">fliget.js</a>
+							.
+						</p>
+						<p>
+							It also provides an official library for Node.js/ESM, available via NPM, ideal for developers who want to use ASCII art features in their own apps or CLI tools.
+						</p>
+						<p>
+							As an open source project, contributions, improvements, and bug reports from the community are welcome. Your support makes the project better for everyone!
+						</p>
+
+						<h2>Links</h2>
+						<ul>
+							<li>GitHub Repository: <a href="https://github.com/pigeonposse/ascii-kit" target="_blank">pigeonposse/ascii-kit</a></li>
+							<li>NPM Package: <a href="https://www.npmjs.com/package/ascii-kit" target="_blank">ascii-kit</a></li>
+							<li>Donate: <a href="https://pigeonposse.com/contribute" target="_blank">Read more ♥︎</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 
-			<section>
-				<pre
-					id="result"
-					contenteditable="true"
-				></pre>
-			</section>
 		</main>
 
 		<footer>
-			<div class="has-text-centered">
+			<div>
 				<p>
 					<a href="https://pigeonposse.com/" target="_blank">Made with ❤️ by PigeonPosse</a>
 				</p>
@@ -291,21 +344,31 @@
 					target="_blank"
 				>Donate </a>
 			</div>
+			<span style="opacity: 0.2; font-size: x-small;"><%=VERSION%></span>
 		</footer>
 
 		<script type="module" defer>
 
-			const $resDiv    = document.getElementById( 'result' )
+			const $resDiv = document.getElementById( 'result-text' )
+			const $resImageDiv = document.getElementById( 'result-image' )
+			const $resSvgDiv = document.getElementById( 'result-svg' )
 
 			/************************************************************************/
 			/** UTILS **/
 			/************************************************************************/
-			async function load(key, cb, ttl = 1000 * 60 * 60 * 24) {
+			const setErrorSpan = (m,e) => `<span style="color: var(--error-color);">${m}\n\n${e || 'Unknown error'}</span>`;
+			const setWarnSpan = (m,e) => `<span style="color: var(--warn-color);">${m}</span>`;
+			const typewrite = async (element, text, speed = 50) =>{
+				element.textContent = '';
+				for (let i = 0; i < text.length; i++) {
+					element.textContent += text[i];
+					await new Promise(resolve => setTimeout(resolve, speed));
+				}
+			}
+			const load = async (key, cb, ttl = 1000 * 60 * 60 * 24) => {
 				const cacheKey = `cache:${key}`;
 				const timestampKey = `${cacheKey}:ts`;
-
 				const cached = localStorage.getItem(cacheKey);
-				// console.log('cached', key, !!cached)
 				const cachedTs = parseInt(localStorage.getItem(timestampKey) || '0');
 
 				if (cached && Date.now() - cachedTs < ttl) {
@@ -324,6 +387,7 @@
 
 				return value;
 			}
+
 			/************************************************************************/
 			/** TABS **/
 			/************************************************************************/
@@ -348,12 +412,10 @@
 
 				$tabPanels.forEach(panel => {
 					panel.hidden = true;
-					panel.classList.add('is-hidden');
 				});
 				const panel = document.getElementById(tab.getAttribute('aria-controls'));
 				if (panel) {
 					panel.hidden = false;
-					panel.classList.remove('is-hidden');
 				}
 			}
 			$tabs.forEach(tab => tab.addEventListener('click', () => {
@@ -362,7 +424,7 @@
 			}));
 
 			const urlParams = new URLSearchParams(window.location.search);
-			const tabParam = urlParams.get('tab');
+			const tabParam = urlParams.get(TAB_ID);
 
 			if (tabParam) {
 				const matchingTab = Array.from($tabs).find(tab => tab.getAttribute('aria-controls') === tabParam);
@@ -371,52 +433,22 @@
 			}else activateTab($tabs[0])
 
 			/************************************************************************/
-			/** IMAGE FORM **/
-			/************************************************************************/
-			const $imageForm = document.querySelector( '#form-image > form' )
-
-			$imageForm.addEventListener( 'submit', async e => {
-
-				e.preventDefault()
-				try {
-					const formData = new FormData(e.target);
-					const formProps = Object.fromEntries(formData);
-
-					// const { image2ascii } = await import( '@ascii-kit/image' )
-
-					const $fileInput      = e.target.querySelector( 'input[type="file"]' )
-					const file            = $fileInput.files?.[0]
-
-					if ( !file ) {
-
-						alert( 'Please select an image' )
-						return
-
-					}
-
-					const arrayBuffer = await file.arrayBuffer()
-					const uint8       = new Uint8Array( arrayBuffer )
-					const res         = await image2ascii( uint8 )
-					$resDiv.textContent = res
-				} catch (err) {
-					alert('Image 2 ASCII is comming soon!')
-				}
-			} )
-
-			/************************************************************************/
 			/** TEXT FORM **/
 			/************************************************************************/
 			const $textForm  = document.getElementById( 'form-text' )
 			const $textFormSelect = $textForm.querySelector( 'select' )
-
+			const $textFormTextarea = $textForm.querySelector( 'textarea' )
+			if ($textFormTextarea && !$textFormTextarea.value.trim()) {
+				typewrite($textFormTextarea, 'Hello world!', 100);
+			}
 			let currentFont = null;
 
 			async function loadFontList() {
 				try {
-					const fontNames = await load(
+					const fontNames = (await load(
 						'fonts',
 						async () => (await import('https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/+esm')).default
-					);
+					) ).sort((a, b) =>a.localeCompare(b, 'en', { sensitivity: 'base' }))
 
 					$textFormSelect.innerHTML = '<option value="">-- Select a font --</option>';
 					fontNames.forEach(name => {
@@ -425,13 +457,14 @@
 						option.textContent = name;
 						$textFormSelect.appendChild(option);
 					});
-				} catch (err) {
+				} catch (e) {
 					$textFormSelect.innerHTML = '<option value="">Error loading fonts</option>';
-					$resDiv.textContent = 'Failed to load font list: ' + err.message;
+					$resDiv.innerHTML = setErrorSpan('The font list could not be loaded. Please reload the page if necessary',e)
 				}
 			}
 
 			async function renderFont(name, text) {
+
 				if (!name) {
 					$resDiv.textContent = 'Please select a font.';
 					return;
@@ -444,7 +477,12 @@
 					const { Font } = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/font/+esm');
 					const fontString = await load(
 						`font-${name}`,
-						async () => (await import(`https://cdn.jsdelivr.net/npm/@ascii-kit/font-${name}/+esm`)).default
+						async () => {
+							const res = await fetch(`https://unpkg.com/@ascii-kit/fonts-flf/dist/${name}.flf`)
+							if (!res.ok) throw new Error(`Error getting file: ${res.statusText}`)
+							return res.text();
+
+						}
 					);
 
 					currentFont = new Font(fontString);
@@ -452,7 +490,7 @@
 					$resDiv.textContent = asciiText;
 
 				} catch (e) {
-					$resDiv.textContent = `Error loading font "${name}":\n\n${e.message}`;
+					$resDiv.innerHTML = setErrorSpan(`Could not render font "${name}"`, e);
 				}
 			}
 
@@ -469,12 +507,44 @@
 			} )
 
 			/************************************************************************/
+			/** IMAGE FORM **/
+			/************************************************************************/
+			const $imageForm = document.querySelector( '#form-image > form' )
+			const $imageFormFileBtn = $imageForm.querySelector( '[role="button"]' )
+			const $imageFormFileInput = $imageForm.querySelector( '[type="file"]' )
+
+			$imageFormFileInput.addEventListener( 'change', e => {
+				$imageFormFileBtn.textContent = 'Selected file: '+e.target?.files?.[0]?.name
+					|| 'File not selected.Select another image'
+			})
+			$imageForm.addEventListener( 'submit', async e => {
+
+				try {
+					e.preventDefault()
+
+					const formData = new FormData(e.target);
+					const formProps = Object.fromEntries(formData);
+					const file            = formProps.image
+
+					if ( !file ) throw new Error( 'Please select an image' )
+
+					const arrayBuffer = await file.arrayBuffer()
+					const uint8       = new Uint8Array( arrayBuffer )
+					const res         = await image2ascii( uint8 )
+					$resImageDiv.textContent = res
+
+				} catch (err) {
+					$resImageDiv.innerHTML = setWarnSpan( 'Image 2 ASCII is comming soon!' )
+				}
+			} )
+
+			/************************************************************************/
 			/** SVG FORM **/
 			/************************************************************************/
 			const $svgForm   = document.getElementById( 'form-svg' )
 			$svgForm.addEventListener( 'submit', async e => {
 				e.preventDefault()
-				alert('SVG 2 ASCII is comming soon!')
+				$resSvgDiv.innerHTML = setWarnSpan( 'SVG 2 ASCII is comming soon!')
 			} )
 
 			/************************************************************************/

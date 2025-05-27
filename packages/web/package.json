@@ -27,6 +27,7 @@
 		"@ascii-kit/repo-config": "workspace:*",
 		"@ascii-kit/svg": "workspace:*",
 		"@vite-pwa/assets-generator": "1.0.0",
+		"vite-plugin-open-graph": "2.0.6",
 		"vite-plugin-pwa": "1.0.0"
 	},
 	"publishConfig": {
