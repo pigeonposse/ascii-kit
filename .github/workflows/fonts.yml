@@ -44,7 +44,6 @@ jobs:
           limit=$(echo $response | jq -r '.resources.core.limit')
           remaining=$(echo $response | jq -r '.resources.core.remaining')
           echo "GitHub API Rate Limit: $remaining/$limit"
-
           if [ "$remaining" -lt 10 ]; then
               exit 1
           fi
@@ -64,8 +63,6 @@ jobs:
       - name: 🏗 Build packages
         run: pnpm build:fonts
 
-
-
       #########################################################################
       #########################################################################
       # UPDATE VERSIONS
@@ -77,7 +74,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
       - name: Update FONT versions
         run: | 
-          pnpm -r --filter "./packages/fonts-all" --filter "./packages/fonts/**" publish --access public --no-git-checks
+          pnpm -r --filter "./packages/fonts-all" --filter "./packages/fonts-flf" --filter "./packages/fonts/**" publish --access public --no-git-checks
         env:
           GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ env.NPM_TOKEN }}

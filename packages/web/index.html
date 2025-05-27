@@ -298,6 +298,33 @@
 			const $resDiv    = document.getElementById( 'result' )
 
 			/************************************************************************/
+			/** UTILS **/
+			/************************************************************************/
+			async function load(key, cb, ttl = 1000 * 60 * 60 * 24) {
+				const cacheKey = `cache:${key}`;
+				const timestampKey = `${cacheKey}:ts`;
+
+				const cached = localStorage.getItem(cacheKey);
+				// console.log('cached', key, !!cached)
+				const cachedTs = parseInt(localStorage.getItem(timestampKey) || '0');
+
+				if (cached && Date.now() - cachedTs < ttl) {
+					try {
+						return JSON.parse(cached);
+					} catch {
+						localStorage.removeItem(cacheKey);
+						localStorage.removeItem(timestampKey);
+					}
+				}
+
+				const value = await cb()
+
+				localStorage.setItem(cacheKey, JSON.stringify(value));
+				localStorage.setItem(timestampKey, Date.now().toString());
+
+				return value;
+			}
+			/************************************************************************/
 			/** TABS **/
 			/************************************************************************/
 
@@ -386,8 +413,11 @@
 
 			async function loadFontList() {
 				try {
-					const res = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/+esm');
-					const fontNames = res.default;
+					const fontNames = await load(
+						'fonts',
+						async () => (await import('https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/+esm')).default
+					);
+
 					$textFormSelect.innerHTML = '<option value="">-- Select a font --</option>';
 					fontNames.forEach(name => {
 						const option = document.createElement('option');
@@ -410,10 +440,14 @@
 				$resDiv.textContent = `Loading font "${name}"...`;
 
 				try {
-					const { Font } = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/font/+esm');
-					const fontModule = await import(`https://cdn.jsdelivr.net/npm/@ascii-kit/font-${name}/+esm`);
 
-					currentFont = new Font(fontModule.default);
+					const { Font } = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/font/+esm');
+					const fontString = await load(
+						`font-${name}`,
+						async () => (await import(`https://cdn.jsdelivr.net/npm/@ascii-kit/font-${name}/+esm`)).default
+					);
+
+					currentFont = new Font(fontString);
 					const asciiText = await currentFont.text(text);
 					$resDiv.textContent = asciiText;
 

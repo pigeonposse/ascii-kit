@@ -1,8 +1,6 @@
-###############################################################################
-# RELEASE DOCS
-###############################################################################
+# yaml-language-server: $schema=https://raw.githubusercontent.com/SchemaStore/schemastore/refs/heads/master/src/schemas/json/github-workflow.json
 
-name: 🚀📚 Release Documentation
+name: 🚀🌐 Release Web
 
 on:
   workflow_dispatch:
@@ -10,23 +8,15 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 env:
     GITHUB_TOKEN: ${{ github.token }}
-    DOCS_ID: 'dovenv'
+    DOCS_ID: 'ascii-kit'
     DOCS_DIR: 'packages/web/dist'
     BUILD_CMD: 'pnpm build && pnpm build:web'
-
-###############################################################################
-# JOBS
-###############################################################################
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-
-      #########################################################################
-      # INIT
-      #########################################################################
 
       - name: ⬇️🛑 Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.12.1
@@ -37,7 +27,7 @@ jobs:
       - name: ⬇️🟢 Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22.12.0
           cache: 'pnpm'
 
       - name: ⬇️📦 Install dependencies
@@ -47,15 +37,11 @@ jobs:
            pnpm i -g wrangler
 
       #########################################################################
-      # BUILD
+      # BUILD AND DEPLOY
       #########################################################################
 
       - name: 🏗 Build packages
         run: ${{env.BUILD_CMD}}
-
-      ###################################################################
-      # BUILD AND DEPLOY
-      ###################################################################
 
       - name: 🌥 Deploy in cloudflare pages
         uses: cloudflare/wrangler-action@v3
