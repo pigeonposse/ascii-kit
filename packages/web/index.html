@@ -1,64 +1,206 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" >
+		<meta charset="UTF-8">
 		<link
 			type="image/png"
 			href="/logo.png"
 			rel="icon"
 		>
-		<meta content="width=device-width, initial-scale=1.0" name="viewport" >
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
 		<title>ASCII Kit | Convert text, image or svg to ASCII art</title>
-		<meta content="ASCII Kit | Convert text, image or svg to ASCII art" name="description" >
-		<link
-			href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
-			rel="stylesheet"
-		>
-	</head>
-	<body class="container">
+		<meta content="ASCII Kit | Convert text, image or svg to ASCII art" name="description">
+		<style>
+			:root {
+				--theme-color: #44ba46;
+				--bg-color: black;
+				--radius: 0px;
+				--text-color: white;
+				--input-bg-color: rgb(14, 14, 14);
+			}
+			body {
+				max-width: 960px;
+				margin: 0 auto;
+				padding: 30px 20px;
+				background-color: var(--bg-color);
+				color:var(--text-color);
+				font-family: monospace;
+			}
+			input, textarea, .file-label, select {
+				background-color: var(--input-bg-color);
+				color: var(--input-text-color);
+				border: none !important;
+				padding: 0.5rem;
+				font-size: 1rem;
+			}
+			input, textarea, .file-label, button, select {
+				border-radius: var(--radius);
+				padding: 0.5rem 1rem;
+				font-family: monospace !important;
+			}
 
-		<header class="has-text-centered mb-5">
-			<img alt="ASCII Kit Logo" src="/logo.png">
-			<h1 class="title is-2">ASCII Kit</h1>
-			<p class="subtitle is-5">Convert text, image or svg to ASCII art</p>
+			button:focus-within,
+			input:focus-within,
+			textarea:focus-within,
+			a:focus-within,
+			select:focus-within,
+			[contenteditable]:focus-within {
+				outline-color: var(--theme-color) !important;
+				outline-style: dashed	;
+			}
+			a {
+				color: var(--text-color);
+				opacity: 0.5;
+				text-decoration: none;
+			}
+			a:hover {
+				color: var(--theme-color);
+			}
+			h1 {
+				font-size: 2rem;
+				margin: 0.5rem 0;
+			}
+			h2 {
+				text-align: center;
+				font-size: 1rem;
+			}
+			h1,h2 {
+				text-transform: uppercase;
+			}
+			.subtitle {
+				font-size: 0.8rem;
+				opacity: 0.5;
+				margin-bottom: 1rem;
+			}
+			.tabs {
+				display: flex;
+				justify-content: center;
+				margin-bottom: 1rem;
+			}
+			.tabs ul {
+				display: flex;
+				list-style: none;
+				padding: 0;
+				gap: 1rem;
+			}
+			.tabs button {
+				background: none;
+				border: none;
+				border-radius: 0 !important;
+				padding: 0.5rem 1rem;
+				font-size: 1rem;
+				cursor: pointer;
+				border-bottom: 2px solid transparent;
+				color: var(--text-color)
+			}
+			.tabs button.is-active {
+				border-color: var(--theme-color);
+				font-weight: bold;
+			}
+
+			textarea {
+				height: 150px;
+			}
+			button {
+				background-color: var(--theme-color);
+				color: var(--bg-color);
+				border: none;
+				cursor: pointer;
+				font-weight: 700;
+			}
+			button.is-primary {
+				background-color: var(--theme-color);
+			}
+			button.is-secondary,
+			a.is-secondary {
+				background-color: transparent;
+				color: var(--text-color);
+				padding: 0;
+				font-size: 0.7rem;
+				opacity: 0.5;
+				font-weight: 700;
+			}
+			form {
+				display: flex;
+				gap: 15px;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: center;
+				align-content: center;
+				flex-wrap: nowrap;
+				overflow: auto;
+				padding: 1rem;
+			}
+			.file-label {
+				display: flex;
+				width: 100%;
+				cursor: pointer;
+			}
+
+			.file-label span {
+				width: 100%;
+				cursor: pointer;
+				padding: 0.5rem 1rem;
+				text-align: center;
+			}
+			.tabs-content > div{
+				padding: 20px 0;
+			}
+			header {
+				text-align: center;
+				margin-bottom: 3rem;
+			}
+			footer {
+				margin-top: 3rem;
+				text-align: center;
+			}
+			pre {
+				padding: 10px;
+				overflow: scroll;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<img
+				alt="ASCII Kit Logo"
+				src="/logo.png"
+				width="80px"
+			>
+			<h1>ASCII Kit</h1>
+			<p class="subtitle">Convert text, image or svg to ASCII art</p>
 		</header>
-		<div>
+		<main>
 
 			<div
-				class="tabs is-centered is-boxed"
-				aria-label="ASCII Tab Options"
-				role="tablist"
+				class="tabs"
 			>
-				<ul>
-					<li>
-						<button
-							id="tab-text"
-							class="is-active"
-							aria-controls="form-text"
-							aria-selected="true"
-							role="tab"
-							tabindex="0"
-						>Texto</button>
-					</li>
-					<li>
-						<button
-							id="tab-image"
-							aria-controls="form-image"
-							aria-selected="false"
-							role="tab"
-							tabindex="-1"
-						>Imagen</button>
-					</li>
-					<li>
-						<button
-							id="tab-svg"
-							aria-controls="form-svg"
-							aria-selected="false"
-							role="tab"
-							tabindex="-1"
-						>SVG</button>
-					</li>
-				</ul>
+				<button
+					id="tab-text"
+					class="is-active"
+					aria-controls="form-text"
+					aria-selected="true"
+					role="tab"
+				>
+					Text
+				</button>
+				<button
+					id="tab-image"
+					aria-controls="form-image"
+					aria-selected="false"
+					role="tab"
+				>
+					Image
+				</button>
+				<button
+					id="tab-svg"
+					aria-controls="form-svg"
+					aria-selected="false"
+					role="tab"
+				>
+					SVG
+				</button>
+
 			</div>
 
 			<div class="tabs-content">
@@ -67,88 +209,258 @@
 					aria-labelledby="tab-text"
 					role="tabpanel"
 				>
-					<h2 class="title is-4">Convertir Texto</h2>
-					<div class="field">
-						<div class="control">
-							<textarea class="textarea" placeholder="Introduce el texto aquí..."></textarea>
-						</div>
-					</div>
-					<button id="convert-text" class="button is-link">Generate</button>
+					<h2>Text to ASCII</h2>
+					<form
+						id="ascii-text-form"
+						action="/"
+						method="get"
+					>
+						<select name="font">
+							<option value="">Loading fonts...</option>
+						</select>
+						<input
+							id="text"
+							type="text"
+							name="text"
+							placeholder="Introduce text here..."
+							required
+							value="Hello world!"
+						>
+						<button type="submit">Generate</button>
+					</form>
 				</div>
 
 				<div
 					id="form-image"
-					class="mt-6"
 					aria-labelledby="tab-image"
 					role="tabpanel"
 				>
-					<h2 class="title is-4">Convertir Imagen</h2>
-					<form id="ascii-image-form">
-						<div class="file is-boxed">
-							<label class="file-label">
-								<input
-									type="file"
-									class="file-input"
-									accept="image/*"
-									name="image"
-									required
-								>
-								<span class="file-cta">
-									<span class="file-label">Seleccionar imagen...</span>
-								</span>
-							</label>
-						</div>
-						<button type="submit" class="button is-link mt-3">Generate</button>
+					<h2>Image to ASCII</h2>
+					<form
+						id="ascii-image-form"
+						action="/"
+						method="get"
+					>
+						<label class="file-label" >
+							<input
+								type="file"
+								accept="image/*"
+								hidden
+								name="image"
+								required
+							>
+							<span role="button">
+								Select image
+							</span>
+						</label>
+
+						<button type="submit">Generate</button>
 					</form>
 				</div>
 
 				<div
 					id="form-svg"
-					class="mt-6"
 					aria-labelledby="tab-svg"
 					role="tabpanel"
 				>
-					<h2 class="title is-4">Convertir SVG</h2>
-					<div class="field">
-						<div class="control">
-							<textarea class="textarea" placeholder="Introduce el SVG aquí..."></textarea>
-						</div>
-					</div>
-					<button id="convert-svg" class="button is-link">Generate</button>
+					<h2>SVG to ASCII</h2>
+					<form id="ascii-svg-form">
+						<textarea class="textarea" placeholder="Introduce SVG text here..."></textarea>
+						<button type="submit">Generate</button>
+					</form>
 				</div>
 			</div>
 
-			<section class="section">
-				<h2 class="title is-4">Resultado</h2>
-				<pre id="result" class="box has-background-dark"></pre>
+			<section>
+				<pre
+					id="result"
+					contenteditable="true"
+				></pre>
 			</section>
-		</div>
+		</main>
 
 		<footer>
 			<div class="has-text-centered">
 				<p>
 					<a href="https://pigeonposse.com/" target="_blank">Made with ❤️ by PigeonPosse</a>
 				</p>
-				<button id="share" class="button is-primary is-small mt-2">Compartir</button>
+				<button id="share" class="button is-secondary">Share </button>
+				<a
+					class="is-secondary"
+					href="https://pigeonposse.com/contribute"
+					target="_blank"
+				>Donate </a>
 			</div>
 		</footer>
 
-		<script type="module" src="/src/main.ts"></script>
-		<script defer>
-    const $shareBtn = document.getElementById('share');
+		<script type="module" defer>
 
-    $shareBtn.addEventListener('click', async () => {
-      if (!navigator.share) {
-        alert('Web Share API no soportada en tu navegador.');
-        return;
-      }
+			const $resDiv    = document.getElementById( 'result' )
 
-      try {
-        await navigator.share({ url: window.location.href });
-      } catch (err) {
-        console.error('Error al compartir:', err);
-      }
-    });
+			/************************************************************************/
+			/** TABS **/
+			/************************************************************************/
+
+			const $tabs      = document.querySelectorAll( '[role="tab"]' )
+			const $tabPanels = document.querySelectorAll( '[role="tabpanel"]' )
+			const TAB_ID = 'tab'
+
+			function changeUrl(tab){
+				const tabId = tab.getAttribute('aria-controls');
+				const url = new URL(window.location);
+				url.searchParams.set(TAB_ID, tabId);
+				history.pushState({}, '', url);
+			}
+			function activateTab(tab) {
+				$tabs.forEach(t => {
+					t.setAttribute('aria-selected', 'false');
+					t.classList.remove('is-active');
+				});
+				tab.setAttribute('aria-selected', 'true');
+				tab.classList.add('is-active');
+
+				$tabPanels.forEach(panel => {
+					panel.hidden = true;
+					panel.classList.add('is-hidden');
+				});
+				const panel = document.getElementById(tab.getAttribute('aria-controls'));
+				if (panel) {
+					panel.hidden = false;
+					panel.classList.remove('is-hidden');
+				}
+			}
+			$tabs.forEach(tab => tab.addEventListener('click', () => {
+				activateTab(tab);
+				changeUrl(tab);
+			}));
+
+			const urlParams = new URLSearchParams(window.location.search);
+			const tabParam = urlParams.get('tab');
+
+			if (tabParam) {
+				const matchingTab = Array.from($tabs).find(tab => tab.getAttribute('aria-controls') === tabParam);
+				if (matchingTab) activateTab(matchingTab);
+				else activateTab($tabs[0])
+			}else activateTab($tabs[0])
+
+			/************************************************************************/
+			/** IMAGE FORM **/
+			/************************************************************************/
+			const $imageForm = document.querySelector( '#form-image > form' )
+
+			$imageForm.addEventListener( 'submit', async e => {
+
+				e.preventDefault()
+				try {
+					const formData = new FormData(e.target);
+					const formProps = Object.fromEntries(formData);
+
+					// const { image2ascii } = await import( '@ascii-kit/image' )
+
+					const $fileInput      = e.target.querySelector( 'input[type="file"]' )
+					const file            = $fileInput.files?.[0]
+
+					if ( !file ) {
+
+						alert( 'Please select an image' )
+						return
+
+					}
+
+					const arrayBuffer = await file.arrayBuffer()
+					const uint8       = new Uint8Array( arrayBuffer )
+					const res         = await image2ascii( uint8 )
+					$resDiv.textContent = res
+				} catch (err) {
+					alert('Image 2 ASCII is comming soon!')
+				}
+			} )
+
+			/************************************************************************/
+			/** TEXT FORM **/
+			/************************************************************************/
+			const $textForm  = document.getElementById( 'form-text' )
+			const $textFormSelect = $textForm.querySelector( 'select' )
+
+			let currentFont = null;
+
+			async function loadFontList() {
+				try {
+					const res = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/+esm');
+					const fontNames = res.default;
+					$textFormSelect.innerHTML = '<option value="">-- Select a font --</option>';
+					fontNames.forEach(name => {
+						const option = document.createElement('option');
+						option.value = name;
+						option.textContent = name;
+						$textFormSelect.appendChild(option);
+					});
+				} catch (err) {
+					$textFormSelect.innerHTML = '<option value="">Error loading fonts</option>';
+					$resDiv.textContent = 'Failed to load font list: ' + err.message;
+				}
+			}
+
+			async function renderFont(name, text) {
+				if (!name) {
+					$resDiv.textContent = 'Please select a font.';
+					return;
+				}
+
+				$resDiv.textContent = `Loading font "${name}"...`;
+
+				try {
+					const { Font } = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/font/+esm');
+					const fontModule = await import(`https://cdn.jsdelivr.net/npm/@ascii-kit/font-${name}/+esm`);
+
+					currentFont = new Font(fontModule.default);
+					const asciiText = await currentFont.text(text);
+					$resDiv.textContent = asciiText;
+
+				} catch (e) {
+					$resDiv.textContent = `Error loading font "${name}":\n\n${e.message}`;
+				}
+			}
+
+			loadFontList();
+			$textForm.addEventListener( 'submit', async e => {
+
+				e.preventDefault()
+				const formData = new FormData(e.target);
+				const formProps = Object.fromEntries(formData);
+				if(!formProps.text) alert('Text must exist');
+				if(!formProps.font) alert('Font must exist');
+				await renderFont(formProps.font, formProps.text);
+
+			} )
+
+			/************************************************************************/
+			/** SVG FORM **/
+			/************************************************************************/
+			const $svgForm   = document.getElementById( 'form-svg' )
+			$svgForm.addEventListener( 'submit', async e => {
+				e.preventDefault()
+				alert('SVG 2 ASCII is comming soon!')
+			} )
+
+			/************************************************************************/
+			/** FOOTER BUTTONS **/
+			/************************************************************************/
+			const $shareBtn = document.getElementById('share');
+
+			$shareBtn.addEventListener('click', async () => {
+				if (!navigator.share) {
+					alert('Web Share API no soportada en tu navegador.');
+					return;
+				}
+
+				try {
+					await navigator.share({ url: window.location.href });
+				} catch (err) {
+					console.error('Error al compartir:', err);
+				}
+			});
 		</script>
+
 	</body>
 </html>

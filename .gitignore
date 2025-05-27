@@ -69,3 +69,4 @@ docs/dev-dist/**
 **/packages/fonts/.temp/**
 **/packages/fonts
 **/packages/fonts-all
+**/packages/fonts-flf

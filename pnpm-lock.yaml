@@ -10,6 +10,10 @@ overrides:
 importers:
 
   .:
+    dependencies:
+      vite:
+        specifier: ^6.3.5
+        version: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)
     devDependencies:
       '@changesets/changelog-github':
         specifier: 0.5.1
@@ -19,12 +23,12 @@ importers:
         version: 1.5.18
       '@dovenv/theme-pigeonposse':
         specifier: 1.5.18
-        version: 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)
+        version: 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)
       '@playwright/test':
         specifier: 1.52.0
         version: 1.52.0
       '@types/bun':
-        specifier: ^1.2.14
+        specifier: 1.2.14
         version: 1.2.14
       '@types/node':
         specifier: 22.15.21
@@ -85,6 +89,8 @@ importers:
         version: link:../_config
 
   packages/fonts-all: {}
+
+  packages/fonts-flf: {}
 
   packages/fonts/1943____: {}
 
@@ -898,6 +904,8 @@ importers:
 
   packages/fonts/patorjk-hex: {}
 
+  packages/fonts/patorjks--cheese: {}
+
   packages/fonts/pawn_ins: {}
 
   packages/fonts/pawp: {}
@@ -967,6 +975,8 @@ importers:
   packages/fonts/reverse: {}
 
   packages/fonts/ripper!_: {}
+
+  packages/fonts/ripper_: {}
 
   packages/fonts/road_rai: {}
 
@@ -1404,6 +1414,12 @@ importers:
       '@ascii-kit/svg':
         specifier: workspace:*
         version: link:../svg
+      '@vite-pwa/assets-generator':
+        specifier: ^1.0.0
+        version: 1.0.0
+      vite-plugin-pwa:
+        specifier: ^1.0.0
+        version: 1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
 
 packages:
 
@@ -9010,7 +9026,7 @@ snapshots:
       - encoding
       - supports-color
 
-  '@dovenv/docs@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)':
+  '@dovenv/docs@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)':
     dependencies:
       '@dovenv/core': 1.5.18
       '@resvg/resvg-js': 2.6.2
@@ -9022,10 +9038,10 @@ snapshots:
       satori: 0.13.1
       satori-html: 0.3.2
       vite-plugin-full-reload: 1.2.0
-      vite-plugin-pwa: 1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)
-      vite-plugin-restart: 0.4.2(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))
+      vite-plugin-pwa: 1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
+      vite-plugin-restart: 0.4.2(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))
       vitepress: 1.6.3(@algolia/client-search@5.25.0)(@types/node@22.15.21)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)
-      vitepress-plugin-group-icons: 1.5.5(markdown-it@14.1.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))
+      vitepress-plugin-group-icons: 1.5.5(markdown-it@14.1.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))
       vitepress-plugin-llmstxt: 0.1.0(vitepress@1.6.3(@algolia/client-search@5.25.0)(@types/node@22.15.21)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3))
       vitepress-plugin-rss: 0.3.1(vitepress@1.6.3(@algolia/client-search@5.25.0)(@types/node@22.15.21)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3))
       vue: 3.5.14(typescript@5.8.3)
@@ -9149,11 +9165,11 @@ snapshots:
     dependencies:
       '@dovenv/core': 1.5.18
 
-  '@dovenv/theme-banda@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)':
+  '@dovenv/theme-banda@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)':
     dependencies:
       '@dovenv/convert': 1.5.18(@dovenv/core@1.5.18)(typescript@5.8.3)
       '@dovenv/core': 1.5.18
-      '@dovenv/docs': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)
+      '@dovenv/docs': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
       '@dovenv/examples': 1.5.18(@dovenv/core@1.5.18)
       '@dovenv/lint': 1.5.18(@dovenv/core@1.5.18)(@types/node@22.15.21)(typescript@5.8.3)
       '@dovenv/repo': 1.5.18(@dovenv/core@1.5.18)
@@ -9197,12 +9213,12 @@ snapshots:
       - workbox-build
       - workbox-window
 
-  '@dovenv/theme-pigeonposse@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)':
+  '@dovenv/theme-pigeonposse@1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/estree@1.0.7)(@types/node@22.15.21)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(stylelint@16.19.1(typescript@5.8.3))(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))(workbox-build@7.3.0)(workbox-window@7.3.0)':
     dependencies:
       '@dovenv/core': 1.5.18
       '@dovenv/eslint-config': 1.5.18(@types/estree@1.0.7)(@typescript-eslint/parser@8.32.1(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3))(eslint@9.27.0(jiti@2.4.2))(typescript@5.8.3)(vue-eslint-parser@10.1.3(eslint@9.27.0(jiti@2.4.2)))
       '@dovenv/stylelint-config': 1.5.18(stylelint@16.19.1(typescript@5.8.3))
-      '@dovenv/theme-banda': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0)
+      '@dovenv/theme-banda': 1.5.18(@algolia/client-search@5.25.0)(@dovenv/core@1.5.18)(@types/node@22.15.21)(markdown-it@14.1.0)(postcss@8.5.3)(search-insights@2.17.3)(terser@5.39.2)(typescript@5.8.3)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0)
     transitivePeerDependencies:
       - '@75lb/nature'
       - '@algolia/client-search'
@@ -15178,12 +15194,12 @@ snapshots:
       picocolors: 1.1.1
       picomatch: 2.3.1
 
-  vite-plugin-pwa@1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2))(workbox-build@7.3.0)(workbox-window@7.3.0):
+  vite-plugin-pwa@1.0.0(@vite-pwa/assets-generator@1.0.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0))(workbox-build@7.3.0)(workbox-window@7.3.0):
     dependencies:
       debug: 4.4.1
       pretty-bytes: 6.1.1
       tinyglobby: 0.2.13
-      vite: 5.4.19(@types/node@22.15.21)(terser@5.39.2)
+      vite: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)
       workbox-build: 7.3.0
       workbox-window: 7.3.0
     optionalDependencies:
@@ -15191,10 +15207,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-restart@0.4.2(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2)):
+  vite-plugin-restart@0.4.2(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)):
     dependencies:
       micromatch: 4.0.8
-      vite: 5.4.19(@types/node@22.15.21)(terser@5.39.2)
+      vite: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)
 
   vite@5.4.19(@types/node@22.15.21)(terser@5.39.2):
     dependencies:
@@ -15222,13 +15238,13 @@ snapshots:
       tsx: 4.19.4
       yaml: 2.8.0
 
-  vitepress-plugin-group-icons@1.5.5(markdown-it@14.1.0)(vite@5.4.19(@types/node@22.15.21)(terser@5.39.2)):
+  vitepress-plugin-group-icons@1.5.5(markdown-it@14.1.0)(vite@6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)):
     dependencies:
       '@iconify-json/logos': 1.2.4
       '@iconify-json/vscode-icons': 1.2.21
       '@iconify/utils': 2.3.0
       markdown-it: 14.1.0
-      vite: 5.4.19(@types/node@22.15.21)(terser@5.39.2)
+      vite: 6.3.5(@types/node@22.15.21)(jiti@2.4.2)(terser@5.39.2)(tsx@4.19.4)(yaml@2.8.0)
     transitivePeerDependencies:
       - supports-color
 

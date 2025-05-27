@@ -11,8 +11,8 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 env:
     GITHUB_TOKEN: ${{ github.token }}
     DOCS_ID: 'dovenv'
-    DOCS_DIR: 'packages/docs/build/docs'
-    BUILD_CMD: 'pnpm build && pnpm build-doc'
+    DOCS_DIR: 'packages/web/dist'
+    BUILD_CMD: 'pnpm build && pnpm build:web'
 
 ###############################################################################
 # JOBS

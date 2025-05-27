@@ -37,6 +37,7 @@
 		"build:fonts": "dovenv fonts",
 		"build:lib": "pnpm ++ ascii-kit build",
 		"build:tools": "pnpm --parallel --filter '!ascii-kit' --filter '!@ascii-kit/web' build",
+		"build:web": "pnpm ++ @ascii-kit/web build",
 		"lint:commit": "dovenv lint commitlint --silent",
 		"lint:eslint": "dovenv lint eslint --silent",
 		"lint:pkg": "dovenv lint custom -k pkg --silent",
@@ -62,6 +63,7 @@
 		"tsx": "4.19.4",
 		"typescript": "5.8.3",
 		"unbuild": "3.5.0",
+		"vite": "6.3.5",
 		"vitest": "3.1.4"
 	},
 	"packageManager": "pnpm@10.11.0",

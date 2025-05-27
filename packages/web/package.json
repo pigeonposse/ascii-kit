@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/web",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"private": true,
 	"description": "Web for ascii-kit",
 	"keywords": [
@@ -25,7 +25,9 @@
 		"@ascii-kit/font": "workspace:*",
 		"@ascii-kit/image": "workspace:*",
 		"@ascii-kit/repo-config": "workspace:*",
-		"@ascii-kit/svg": "workspace:*"
+		"@ascii-kit/svg": "workspace:*",
+		"@vite-pwa/assets-generator": "1.0.0",
+		"vite-plugin-pwa": "1.0.0"
 	},
 	"publishConfig": {
 		"access": "public",

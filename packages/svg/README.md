@@ -1,3 +1,3 @@
-# ascii-kit | Core
+# ascii-kit | SVG
 
-The core of ascii-kit.
+Convert svg strings to ASCII art

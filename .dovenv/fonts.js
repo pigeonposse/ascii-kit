@@ -26,16 +26,22 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		const PACKAGES_PATH = joinPath( utils.wsDir, 'packages' )
 		const FONT_PKG_PATH = joinPath( PACKAGES_PATH, 'fonts' )
 
-		const FONT_DIST_ROUTE    = 'dist'
-		const FONT_JS_ROUTE      = `${FONT_DIST_ROUTE}/index.js`
-		const FONT_DTS_ROUTE     = `${FONT_DIST_ROUTE}/index.d.ts`
-		const LIB_ID             = 'ascii-kit'
+		const FONT_DIST_ROUTE = 'dist'
+		const FONT_JS_ROUTE   = `${FONT_DIST_ROUTE}/index.js`
+		const FONT_DTS_ROUTE  = `${FONT_DIST_ROUTE}/index.d.ts`
+		const LIB_ID          = 'ascii-kit'
+
+		const TEMP_PATH      = joinPath( FONT_PKG_PATH, '.temp' )
+		const COMPRESS_PATH  = joinPath( TEMP_PATH, 'compress' )
+		const FONT_TEMP_PATH = joinPath( TEMP_PATH, 'fonts' )
+
 		const ALL_FONT_PKG_ID    = 'fonts'
-		const TEMP_PATH          = joinPath( FONT_PKG_PATH, '.temp' )
-		const COMPRESS_PATH      = joinPath( TEMP_PATH, 'compress' )
-		const FONT_TEMP_PATH     = joinPath( TEMP_PATH, 'fonts' )
 		const ALL_FONT_PATH      = joinPath( PACKAGES_PATH, 'fonts-all' )
 		const ALL_FONT_DIST_PATH = joinPath( ALL_FONT_PATH, FONT_DIST_ROUTE )
+
+		const ALL_FLF_FONT_PKG_ID    = 'fonts-flf'
+		const ALL_FLF_FONT_PATH      = joinPath( PACKAGES_PATH, ALL_FLF_FONT_PKG_ID )
+		const ALL_FLF_FONT_DIST_PATH = joinPath( ALL_FLF_FONT_PATH, FONT_DIST_ROUTE )
 
 		const VERSION = utils.config.const.corePkg.version
 		if ( !VERSION ) throw new Error( 'Version not found' )
@@ -234,6 +240,7 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		console.log( 'Generating font packages...\n' )
 
 		await ensureDir( ALL_FONT_DIST_PATH )
+		await ensureDir( ALL_FLF_FONT_DIST_PATH )
 
 		await Promise.all( flfFiles.map( async file => {
 
@@ -250,10 +257,11 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 
 			if ( fonts.has( fontNamePre ) ) return
 
-			const fontName  = fontNamePre //(  file.includes( 'xero' ) ? 'xero-' : '' ) + fontNamePre
-			const FONT_PATH = joinPath( FONT_PKG_PATH, fontName )
-			const content   = getJScontent( fontName, await getFileText( file ) )
-			const pkgData   = getPackageData( fontName )
+			const fontName    = fontNamePre //(  file.includes( 'xero' ) ? 'xero-' : '' ) + fontNamePre
+			const FONT_PATH   = joinPath( FONT_PKG_PATH, fontName )
+			const textContent = await getFileText( file )
+			const content     = getJScontent( fontName, textContent )
+			const pkgData     = getPackageData( fontName )
 
 			await ensureDir( joinPath( FONT_PATH, FONT_DIST_ROUTE ) )
 
@@ -263,6 +271,7 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 			await writeFile( joinPath( FONT_PATH, 'README.md' ), getReadmeData( getFontID( fontName ) ), 'utf8' )
 			await writeFile( joinPath( ALL_FONT_DIST_PATH, fontName + '.js' ), content.js, 'utf8' )
 			await writeFile( joinPath( ALL_FONT_DIST_PATH, fontName + '.d.ts' ), content.dts, 'utf8' )
+			await writeFile( joinPath( ALL_FLF_FONT_DIST_PATH, fontName + '.flf' ), textContent )
 
 			fonts.add( fontName )
 			// console.log( `✅ Generated font package: ${fontName}\n  - PATH: ${FONT_PATH}` )
@@ -272,13 +281,24 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		const fontsArray  = [ ...fonts ]
 		const fontsString = toJson( fontsArray )
 		const typeDef     = `/** List of figfonts names */\ndeclare const fonts: ${fontsString};\nexport default fonts;\n`
+
 		await writeFile( joinPath( ALL_FONT_PATH, 'README.md' ), `# All in one FigFonts`, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_PATH, 'package.json' ), toJson( ALL_FONT_PKG_DATA ), 'utf8' )
 		await writeFile( joinPath( ALL_FONT_DIST_PATH, 'list.json' ), fontsString, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_DIST_PATH, 'index.js' ), `export default ${fontsString}\n`, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_PATH, FONT_DIST_ROUTE, 'index.d.ts' ), typeDef, 'utf8' )
-		// console.log( `✅ Generated font package: ${ALL_FONT_PKG_ID}\n  - PATH: ${ALL_FONT_PATH}\n` )
 
+		await writeFile( joinPath( ALL_FLF_FONT_PATH, 'README.md' ), `# All in one FLF FigFonts`, 'utf8' )
+		await writeFile( joinPath( ALL_FLF_FONT_DIST_PATH, 'list.json' ), fontsString, 'utf8' )
+		await writeFile( joinPath( ALL_FLF_FONT_PATH, 'package.json' ), toJson( {
+			...pkgDataShared,
+			name        : getPKGname( ALL_FLF_FONT_PKG_ID ),
+			description : 'All in one FLF FigFonts',
+			files       : [ FONT_DIST_ROUTE ],
+		} ), 'utf8' )
+
+		// console.log( `✅ Generated font package: ${ALL_FONT_PKG_ID}\n  - PATH: ${ALL_FONT_PATH}\n` )
+		ALL_FLF_FONT_PATH
 		console.log( `🎉 Finished generating font packages.\n\n  - PATH: ${FONT_PKG_PATH}\n  - PACKAGES: ${fonts.size}` )
 
 		// await removeDirIfExist( TEMP_PATH )

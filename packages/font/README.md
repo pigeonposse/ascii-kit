@@ -1,3 +1,3 @@
-# ascii-kit | Core
+# ascii-kit | Font
 
-The core of ascii-kit.
+Convert text to ASCII art

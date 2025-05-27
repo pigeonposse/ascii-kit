@@ -60,4 +60,4 @@ export const checkBrokenFonts = async () => {
 
 }
 
-// checkBrokenFonts()
+checkBrokenFonts()

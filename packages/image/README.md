@@ -1,3 +1,3 @@
-# ascii-kit | Core
+# ascii-kit | Image
 
-The core of ascii-kit.
+Convert image (png,jpeg...) to ASCII art

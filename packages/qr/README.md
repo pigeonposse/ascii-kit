@@ -1,3 +1,3 @@
-# ascii-kit | Core
+# ascii-kit | QR
 
-The core of ascii-kit.
+Create QR in ascii art
