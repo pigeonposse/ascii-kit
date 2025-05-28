@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="<%=LANG%>">
+<html lang="<%= LANG %>">
 	<head>
 		<meta charset="UTF-8">
 		<link
@@ -8,8 +8,8 @@
 			rel="icon"
 		>
 		<meta content="width=device-width, initial-scale=1.0" name="viewport">
-		<title><%=TITLE%></title>
-		<meta content="<%=DESC%>" name="description">
+		<title><%= TITLE %></title>
+		<meta content="<%= DESC %>" name="description">
 		<style>
 			:root {
 				--theme-color: #44ba46;
@@ -20,6 +20,10 @@
 				--error-color: red;
 				--warn-color: yellow;
 				--info-color: blue;
+			}
+			::selection {
+				background-color: var(--theme-color);
+				color: var(--bg-color);
 			}
 			body {
 				max-width: 960px;
@@ -103,6 +107,7 @@
 
 			textarea {
 				height: 80px;
+				resize: vertical;
 			}
 			button {
 				background-color: var(--theme-color);
@@ -146,7 +151,7 @@
 				padding: 0.5rem 1rem;
 				text-align: center;
 			}
-			.tabs-content > div{
+			.tabs-content > div {
 				padding: 20px 0;
 			}
 			header {
@@ -284,7 +289,7 @@
 				>
 					<h2>SVG to ASCII</h2>
 					<form id="ascii-svg-form">
-						<textarea class="textarea" placeholder="Introduce SVG text here..."></textarea>
+						<textarea name="svg" placeholder="Introduce SVG text here..."></textarea>
 						<button type="submit">Generate</button>
 					</form>
 					<pre
@@ -346,7 +351,7 @@
 			</div>
 			<span style="opacity: 0.2; font-size: x-small;"><%=VERSION%></span>
 		</footer>
-
+		<script src="https://unpkg.com/@resvg/resvg-wasm"></script>
 		<script type="module" defer>
 
 			const $resDiv = document.getElementById( 'result-text' )
@@ -365,6 +370,29 @@
 					await new Promise(resolve => setTimeout(resolve, speed));
 				}
 			}
+			/** @type {Record<string, unknown>} */
+			const _imported = {};
+
+			/**
+			* Dynamically imports and caches data.
+			*
+			* @template {Record<string, () => Promise<any>>} T
+			* @param {T} modules - An object mapping keys to dynamic import functions.
+			* @returns {Promise<{ [K in keyof T]: () => Promise<Awaited<ReturnType<T[K]>>> }>}
+			*/
+			const lazyLoad = (modules) => {
+				/** @type {Partial<Record<keyof T, () => Promise<any>>>} */
+				const result = {};
+
+				for (const key in modules) {
+					result[key] = async () => {
+						if (!_imported[key]) _imported[key] = await modules[key]();
+						return _imported[key];
+					};
+				}
+
+				return /** @type {{ [K in keyof T]: () => Promise<Awaited<ReturnType<T[K]>>> }} */ (result);
+			};
 			const load = async (key, cb, ttl = 1000 * 60 * 60 * 24) => {
 				const cacheKey = `cache:${key}`;
 				const timestampKey = `${cacheKey}:ts`;
@@ -388,6 +416,41 @@
 				return value;
 			}
 
+			/************************************************************************/
+			/** DEPS **/
+			/************************************************************************/
+			const deps = {
+				...lazyLoad({
+					Font: async () => {
+						const { Font } = await import('@ascii-kit/font');
+						return Font
+					},
+					image2ascii: async () =>{
+						const { image2ascii } = await import('@ascii-kit/image')
+						return image2ascii
+					},
+					Resvg: async () => {
+						if(!window.resvg) throw new Error('resvg is not imported')
+						await resvg.initWasm(fetch('https://unpkg.com/@resvg/resvg-wasm/index_bg.wasm'))
+						return resvg.Resvg
+					}
+				}),
+				getFontList: async () => (await load(
+					'fonts',
+					async () => (await import('https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/+esm')).default
+				) ).sort((a, b) =>a.localeCompare(b, 'en', { sensitivity: 'base' })),
+				getFont: async (name) => {
+					return await load(
+						`font-${name}`,
+						async () => {
+							const res = await fetch(`https://unpkg.com/@ascii-kit/fonts-flf/dist/${name}.flf`)
+							if (!res.ok) throw new Error(`Error getting file: ${res.statusText}`)
+							return res.text();
+
+						}
+					);
+				}
+			}
 			/************************************************************************/
 			/** TABS **/
 			/************************************************************************/
@@ -445,10 +508,7 @@
 
 			async function loadFontList() {
 				try {
-					const fontNames = (await load(
-						'fonts',
-						async () => (await import('https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/+esm')).default
-					) ).sort((a, b) =>a.localeCompare(b, 'en', { sensitivity: 'base' }))
+					const fontNames = await deps.getFontList();
 
 					$textFormSelect.innerHTML = '<option value="">-- Select a font --</option>';
 					fontNames.forEach(name => {
@@ -474,16 +534,8 @@
 
 				try {
 
-					const { Font } = await import('https://cdn.jsdelivr.net/npm/@ascii-kit/font/+esm');
-					const fontString = await load(
-						`font-${name}`,
-						async () => {
-							const res = await fetch(`https://unpkg.com/@ascii-kit/fonts-flf/dist/${name}.flf`)
-							if (!res.ok) throw new Error(`Error getting file: ${res.statusText}`)
-							return res.text();
-
-						}
-					);
+					const Font = await deps.Font();
+					const fontString = await deps.getFont(name);
 
 					currentFont = new Font(fontString);
 					const asciiText = await currentFont.text(text);
@@ -514,27 +566,28 @@
 			const $imageFormFileInput = $imageForm.querySelector( '[type="file"]' )
 
 			$imageFormFileInput.addEventListener( 'change', e => {
-				$imageFormFileBtn.textContent = 'Selected file: '+e.target?.files?.[0]?.name
+				$imageFormFileBtn.textContent =
+					'Selected file: '+e.target?.files?.[0]?.name
 					|| 'File not selected.Select another image'
 			})
 			$imageForm.addEventListener( 'submit', async e => {
-
 				try {
 					e.preventDefault()
 
 					const formData = new FormData(e.target);
 					const formProps = Object.fromEntries(formData);
-					const file            = formProps.image
+					const file = formProps.image
 
 					if ( !file ) throw new Error( 'Please select an image' )
 
 					const arrayBuffer = await file.arrayBuffer()
-					const uint8       = new Uint8Array( arrayBuffer )
-					const res         = await image2ascii( uint8 )
+
+					const image2ascii = await deps.image2ascii();
+					const res         = await image2ascii( arrayBuffer, {fit: 'box',container: {width: $resImageDiv.offsetWidth, height: $resImageDiv.offsetHeight}} )
 					$resImageDiv.textContent = res
 
 				} catch (err) {
-					$resImageDiv.innerHTML = setWarnSpan( 'Image 2 ASCII is comming soon!' )
+					$resImageDiv.innerHTML = setErrorSpan( 'Failed to render image', err )
 				}
 			} )
 
@@ -542,9 +595,35 @@
 			/** SVG FORM **/
 			/************************************************************************/
 			const $svgForm   = document.getElementById( 'form-svg' )
+			const svg2png = async ( input ) => {
+				const opts = {
+					fitTo: {
+						mode: 'width', // If you need to change the size
+						value: 800,
+					},
+				}
+				const Resvg = await deps.Resvg();
+				const resvgJS = new Resvg( input, opts)
+				const pngBuffer = resvgJS.render(input, opts).asPng()
+				const blob = new Blob([pngBuffer], { type: 'image/png' })
+				return blob.arrayBuffer()
+			}
 			$svgForm.addEventListener( 'submit', async e => {
-				e.preventDefault()
-				$resSvgDiv.innerHTML = setWarnSpan( 'SVG 2 ASCII is comming soon!')
+				try {
+
+					e.preventDefault()
+
+					const formData = new FormData(e.target);
+					const formProps = Object.fromEntries(formData);
+					const svg            = formProps.svg
+					const image2ascii = await deps.image2ascii();
+					const arrayBuffer = await svg2png( svg )
+					const res         = await image2ascii( arrayBuffer, {fit: 'box',container: {width: $resSvgDiv.offsetWidth, height: $resSvgDiv.offsetHeight}} )
+					$resSvgDiv.textContent = res
+				} catch (err) {
+					$resSvgDiv.innerHTML = setErrorSpan( 'Failed to convert SVG', err )
+				}
+				// $resSvgDiv.innerHTML = setWarnSpan( 'SVG 2 ASCII is comming soon!')
 			} )
 
 			/************************************************************************/

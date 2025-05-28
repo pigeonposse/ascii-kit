@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/svg",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Convert svg to ASCII art",
 	"keywords": [
 		"dovenv",
@@ -13,10 +13,6 @@
 			"import": {
 				"types": "./dist/main.d.mts",
 				"default": "./dist/main.mjs"
-			},
-			"require": {
-				"types": "./dist/main.d.cts",
-				"default": "./dist/main.cjs"
 			}
 		}
 	},

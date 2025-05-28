@@ -5,12 +5,15 @@
  * @see https://github.com/ajay-gandhi/asciify-image/
  */
 
-import type Jimp from 'jimp-compact' // 1.3MB @see https://pkg-size.dev/jimp-compact
+import {
+	Jimp,
+	intToRGBA,
+} from 'jimp'
 
 /**
  * Input of the image.
  */
-export type Image2AsciiInput = Buffer
+export type Image2AsciiInput = ArrayBuffer | Buffer
 export type Image2AsciiOptions = {
 	// /**
 	//  * Defines if the output should be colored (`true`) or black and white (`false`).
@@ -55,6 +58,23 @@ export type Image2AsciiOptions = {
 	 * @default ` .,:;i1tfLCG08@`
 	 */
 	chars?       : string
+	/**
+	 * The container options for the asciified image.
+	 *
+	 */
+	container?: {
+		width?  : number
+		height? : number
+	}
+}
+
+type ImageBitmap = {
+	height : number
+	width  : number
+}
+type CalculateDimsOpts = Required<Pick<Image2AsciiOptions, 'fit'>> & {
+	width  : number
+	height : number
 }
 
 const getWindowSize = async (): Promise<{
@@ -72,7 +92,7 @@ const getWindowSize = async (): Promise<{
 	}
 	const {
 		platform, stdout,
-	} = ( await import( 'node:process' ) )
+	} = globalThis.process
 	const terminalCharWidth = platform === 'win32' ? 0.714 : 0.5
 
 	return {
@@ -82,37 +102,63 @@ const getWindowSize = async (): Promise<{
 
 }
 
-type CalculateDimsOpts = Required<Pick<Image2AsciiOptions, 'fit'>> & {
-	width  : number
-	height : number
-}
 const calculateDims = (
-	img: Jimp,
+	imgBitmap: {
+		height : number
+		width  : number
+	},
 	opts: CalculateDimsOpts,
 ): [number, number] => {
 
 	if ( opts.fit === 'width' )
-		return [ opts.width, img.bitmap.height * ( opts.width / img.bitmap.width ) ]
+		return [ opts.width, imgBitmap.height * ( opts.width / imgBitmap.width ) ]
 	else if ( opts.fit === 'height' )
-		return [ img.bitmap.width * ( opts.height / img.bitmap.height ), opts.height ]
+		return [ imgBitmap.width * ( opts.height / imgBitmap.height ), opts.height ]
 	else if ( opts.fit === 'none' ) return [ opts.width, opts.height ]
 	else if ( opts.fit === 'box' ) {
 
-		const wRatio = img.bitmap.width / opts.width
-		const hRatio = img.bitmap.height / opts.height
+		const wRatio = imgBitmap.width / opts.width
+		const hRatio = imgBitmap.height / opts.height
 		return wRatio > hRatio
-			? [ opts.width, Math.round( img.bitmap.height / wRatio ) ]
-			: [ Math.round( img.bitmap.width / hRatio ), opts.height ]
+			? [ opts.width, Math.round( imgBitmap.height / wRatio ) ]
+			: [ Math.round( imgBitmap.width / hRatio ), opts.height ]
 
 	}
 	else {
 
 		if ( opts.fit !== 'original' )
-			console.error( 'Invalid option "fit", assuming "original"' )
+			throw new Error( 'Invalid option "fit", assuming "original"' )
 
-		return [ img.bitmap.width, img.bitmap.height ]
+		return [ imgBitmap.width, imgBitmap.height ]
 
 	}
+
+}
+
+const validateWidth = ( width: number | string, windowWidth: number ): number => {
+
+	if ( width && typeof width === 'string' && width.endsWith( '%' ) ) {
+
+		width = Math.floor(
+			( parseInt( width.slice( 0, -1 ) ) / 100 ) * ( windowWidth ),
+		)
+
+	}
+
+	return parseInt( String( width ) )
+
+}
+const validateHeight = ( height: number | string, windowHeight: number ): number => {
+
+	if ( height && typeof height === 'string' && height.endsWith( '%' ) ) {
+
+		height = Math.floor(
+			( parseInt( height.slice( 0, -1 ) ) / 100 ) * ( windowHeight ),
+		)
+
+	}
+
+	return parseInt( String( height ) )
 
 }
 
@@ -123,114 +169,87 @@ const calculateDims = (
  * @param   {Image2AsciiOptions} [opts] - Optional options.
  * @returns {Promise<string>}           A promise that resolves with the ASCII art string.
  * @example
- * const input = 'https://raw.githubusercontent.com/pigeonposse/backan/main/docs/public/logo.png'
+ * const res = await fetch(
+ *   'https://raw.githubusercontent.com/pigeonposse/backan/main/docs/public/logo.png'
+ * );
+ * const input = await res.arrayBuffer();
  * const ascii = await image2ascii( input, {
  *   fit         : 'width',
  *   width       : '100%',
  *   height      : '100%',
  *   chars       : ' #+@',
  * } )
+ *
  * console.log( ascii )
  */
 export const image2ascii = async ( input: Image2AsciiInput, opts?: Image2AsciiOptions ): Promise<string> => {
 
 	try {
 
-		const Jimp  = ( await import( 'jimp-compact' ) ).default
-		const image = await Jimp.read( input )
-
 		const windowSize = await getWindowSize()
 
-		const intensity = ( img: Jimp, x: number, y: number ): number => {
+		// Setup options
+		const options = {
+			// If opts?.aspectRatio is null or undefined, it will use 2. Otherwise, it will use the provided value (including 0, false, or an empty string).
+			aspectRatio : opts?.aspectRatio ?? 2,
+			width       : validateWidth( opts?.width ?? '100%', opts?.container?.width ?? windowSize.width ),
+			height      : validateHeight( opts?.height ?? '100%', opts?.container?.height ?? windowSize.height ),
+			fit         : opts?.fit || 'box',
+			chars       : opts?.chars || ' .,:;i1tfLCG08@',
+		}
 
-			const color = Jimp.intToRGBA( img.getPixelColor( x, y ) )
+		const image = await Jimp.read( input )
+
+		const numC = options.chars.length - 1
+
+		const newDims = calculateDims( image.bitmap, options )
+
+		const intensity = ( img: Awaited<ReturnType<typeof Jimp['read']>>, x: number, y: number ): number => {
+
+			const pixels = img.getPixelColor( x, y )
+			const color  = intToRGBA( pixels )
+
 			return color.r + color.g + color.b + color.a
 
 		}
 
-		const validateWidth = ( width: number | string ): number => {
-
-			if ( width && typeof width === 'string' && width.endsWith( '%' ) ) {
-
-				width = Math.floor(
-					( parseInt( width.slice( 0, -1 ) ) / 100 ) * ( windowSize.width ),
-				)
-
-			}
-
-			return parseInt( String( width ) )
-
-		}
-		const validateHeight = ( height: number | string ): number => {
-
-			if ( height && typeof height === 'string' && height.endsWith( '%' ) ) {
-
-				height = Math.floor(
-					( parseInt( height.slice( 0, -1 ) ) / 100 ) * ( windowSize.height ),
-				)
-
-			}
-
-			return parseInt( String( height ) )
-
-		}
-
-		// Setup options
-		const options = {
-			fit         : opts?.fit ?? 'box',
-			width       : opts?.width ? validateWidth( opts.width ) : validateWidth( '100%' ), //image.bitmap.width,
-			height      : opts?.height ? validateHeight( opts.height ) : validateHeight( '100%' ), //image.bitmap.height,
-			aspectRatio : opts?.aspectRatio ?? 2,
-			asString    : true,
-			chars       : opts?.chars ?? ' .,:;i1tfLCG08@',
-		}
-		// console.debug( options )
-
-		const chars   = options.chars
-		const numC    = chars.length - 1
-		const newDims = calculateDims( image, options )
-
 		// Resize to requested dimensions
-		image.resize( newDims[0], newDims[1] )
+		image.resize( {
+			w : newDims[0],
+			h : newDims[1],
+		} )
 
-		let ascii: string | string[] = options.asString ? '' : []
+		let asciiString: string = '' // Initialize as an empty string
 
-		const norm = ( 255 * 4 ) / numC
+		const norm                     = ( 255 * 4 ) / numC
+		const imageBitmap: ImageBitmap = image.bitmap
 
 		// Get and convert pixels
-		for ( let j = 0; j < image.bitmap.height; j++ ) {
+		for ( let j = 0; j < imageBitmap.height; j++ ) {
 
-			// Add new array if type
-			// @ts-ignore
-			if ( !options.asString ) ( ascii as string[] ).push( [] )
-
-			for ( let i = 0; i < image.bitmap.width; i++ ) {
+			for ( let i = 0; i < imageBitmap.width; i++ ) {
 
 				for ( let c = 0; c < options.aspectRatio; c++ ) {
 
-					const next = chars.charAt(
+					const next   = options.chars.charAt(
 						Math.round( intensity( image, i, j ) / norm ),
 					)
-
-					if ( options.asString ) ascii += next
-					// @ts-ignore
-					else ascii[j].push( next )
+					asciiString += next
 
 				}
 
 			}
-
-			if ( options.asString && j !== image.bitmap.height - 1 )
-				( ascii as string ) += '\n'
+			// Add newline for all but the last row
+			if ( j !== imageBitmap.height - 1 ) asciiString += '\n'
 
 		}
 
-		return ascii.toString()
+		return asciiString // Directly return the string
 
 	}
 	catch ( err ) {
 
-		throw new Error( `Error loading image: ${err}` )
+		throw new Error( `Error transforming image: ${err instanceof Error ? err.message : 'Unknown error'}` )
 
 	}
 

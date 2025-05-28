@@ -1,6 +1,6 @@
 {
 	"name": "ascii-kit",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Toolkit for create awesome ascii art",
 	"keywords": [
 		"ascii",
@@ -16,10 +16,6 @@
 			"import": {
 				"types": "./dist/main.d.mts",
 				"default": "./dist/main.mjs"
-			},
-			"require": {
-				"types": "./dist/main.d.cts",
-				"default": "./dist/main.cjs"
 			}
 		}
 	},

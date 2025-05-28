@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/image",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Convert image (png,jpeg...) to ASCII art",
 	"keywords": [
 		"dovenv",
@@ -11,27 +11,25 @@
 	"exports": {
 		".": {
 			"import": {
-				"types": "./dist/main.d.mts",
-				"default": "./dist/main.mjs"
-			},
-			"require": {
-				"types": "./dist/main.d.cts",
-				"default": "./dist/main.cjs"
+				"types": "./dist/main.d.ts",
+				"default": "./dist/main.js"
 			}
 		}
 	},
+	"main": "dist/main.js",
+	"module": "dist/main.js",
 	"files": [
 		"dist"
 	],
 	"scripts": {
-		"build": "unbuild",
+		"build": "pnpm build:js && pnpm build:ts",
+		"build:js": "esbuild src/main.ts --bundle --tree-shaking=true --format=esm --target=es2020 --outfile=dist/main.js --packages=bundle",
+		"build:ts": "tsc",
 		"test": "vitest run -r src --passWithNoTests"
 	},
-	"dependencies": {
-		"jimp-compact": "0.16.1-2"
-	},
 	"devDependencies": {
-		"@ascii-kit/repo-config": "workspace:*"
+		"@ascii-kit/repo-config": "workspace:*",
+		"jimp": "1.6.0"
 	},
 	"publishConfig": {
 		"access": "public",

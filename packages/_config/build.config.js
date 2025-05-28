@@ -5,7 +5,7 @@ export const config = {
 	declaration : true,
 	rollup      : {
 		inlineDependencies : true,
-		emitCJS            : true,
+		emitCJS            : false,
 		esbuild            : {
 			minify : true,
 			target : 'node20',

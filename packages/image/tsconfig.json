@@ -1,9 +1,20 @@
 {
-	"extends": "./node_modules/@ascii-kit/repo-config/tsconfig.json",
+	// "extends": "./node_modules/@ascii-kit/repo-config/tsconfig.json",
+	"compilerOptions": {
+		"target": "ES2020",
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"outDir": "dist",
+		"skipLibCheck": true,
+		"moduleResolution": "bundler",
+		"module": "esnext",
+	},
 	"include": [
 		"./src",
 	],
 	"exclude": [
-		"./node_modules/**"
+		"./node_modules/**",
+		"**/*.example.ts",
+		"**/*.test.ts"
 	]
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/web",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"private": true,
 	"description": "Web for ascii-kit",
 	"keywords": [
@@ -18,8 +18,7 @@
 	"scripts": {
 		"build": "vite build",
 		"dev": "vite",
-		"preview": "vite preview",
-		"test": "vitest run -r src --passWithNoTests"
+		"preview": "vite preview"
 	},
 	"devDependencies": {
 		"@ascii-kit/font": "workspace:*",

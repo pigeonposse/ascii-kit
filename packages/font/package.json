@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/font",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Convert text to ASCII art",
 	"keywords": [
 		"dovenv",
@@ -13,13 +13,11 @@
 			"import": {
 				"types": "./dist/main.d.mts",
 				"default": "./dist/main.mjs"
-			},
-			"require": {
-				"types": "./dist/main.d.cts",
-				"default": "./dist/main.cjs"
 			}
 		}
 	},
+	"main": "dist/main.mjs",
+	"module": "dist/main.mjs",
 	"files": [
 		"dist"
 	],

@@ -1,4 +1,5 @@
-import { image2ascii } from './main'
+import { image2ascii } from '../dist/main.js'
+// import { image2ascii } from './main'
 
 const _fetchImage = async ( url: string ) => {
 
@@ -6,7 +7,7 @@ const _fetchImage = async ( url: string ) => {
 
 		const response = await fetch( url )
 
-		const buffer = Buffer.from( await response.arrayBuffer() )
+		const buffer = await response.arrayBuffer()
 
 		return buffer
 
@@ -20,8 +21,8 @@ const _fetchImage = async ( url: string ) => {
 
 }
 const input = await _fetchImage( 'https://raw.githubusercontent.com/pigeonposse/backan/main/docs/public/logo.png' )
+
 console.log( await image2ascii( input, {
 	fit   : 'width',
 	chars : ' #+@',
-
 } ) )

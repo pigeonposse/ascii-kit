@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/tree",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Create trees from ascii-art",
 	"keywords": [
 		"dovenv",
@@ -13,10 +13,6 @@
 			"import": {
 				"types": "./dist/main.d.mts",
 				"default": "./dist/main.mjs"
-			},
-			"require": {
-				"types": "./dist/main.d.cts",
-				"default": "./dist/main.cjs"
 			}
 		}
 	},
