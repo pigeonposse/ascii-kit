@@ -1,5 +1,14 @@
 # @ascii-kit/svg
 
+## 0.0.5
+
+### Patch Changes
+
+- update tre package
+
+- Updated dependencies []:
+  - @ascii-kit/image@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes

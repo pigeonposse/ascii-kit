@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/repo-config",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"private": true,
 	"description": "Confuration for monorepo repositories",
 	"keywords": [

@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/web",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"private": true,
 	"description": "Web for ascii-kit",
 	"keywords": [

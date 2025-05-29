@@ -1,6 +1,6 @@
 {
 	"name": "@ascii-kit/image",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Convert image (png,jpeg...) to ASCII art",
 	"keywords": [
 		"dovenv",
