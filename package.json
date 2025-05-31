@@ -3,8 +3,23 @@
 	"private": true,
 	"description": "A modern toolkit for working with ASCII",
 	"keywords": [
+		"ascii",
+		"ascii-art",
+		"ascii-kit",
+		"dovenv",
+		"esm",
+		"figfonts",
+		"figlet",
+		"font",
+		"image",
+		"image-to-ascii",
+		"image2ascii",
 		"pigeonposse",
-		"pp"
+		"pp",
+		"qr",
+		"svg",
+		"svg-to-ascii",
+		"svg2ascii"
 	],
 	"homepage": "https://ascii-kit.pigeonposse.com",
 	"bugs": {
@@ -79,7 +94,7 @@
 		"productName": "ASCII KIT",
 		"shortDesc": "A modern toolkit for working with ASCII",
 		"action": "Create amazing ASCII art from different sources such as fonts, images, SVG, etc.",
-		"libraryURL": "https://www.npmjs.com/package/@ascii-kit/core",
+		"libraryURL": "https://www.npmjs.com/package/ascii-kit",
 		"licenseURL": "https://github.com/pigeonposse/ascii-kit/blob/main/LICENSE",
 		"changelogURL": "https://github.com/pigeonposse/ascii-kit/blob/main/packages/core/CHANGELOG.md",
 		"contributingURL": "https://github.com/pigeonposse/.github/blob/main/CONTRIBUTING.md",
