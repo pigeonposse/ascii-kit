@@ -16,8 +16,8 @@ Some of our features are list below:
 
 ### Fonts
 
-![npm bundle size](https://img.shields.io/bundlephobia/min/%40ascii-kit%2Ffont)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40ascii-kit%2Ffont)
+![npm package minimized gzipped size](https://img.shields.io/bundlejs/size/%40ascii-kit%2Ffont)
+![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/%40ascii-kit%2Ffont)
 
 Convert text to **ASCII art** using your favorite font.
 
@@ -28,8 +28,8 @@ Convert text to **ASCII art** using your favorite font.
 
 ### Image
 
-![npm bundle size](https://img.shields.io/bundlephobia/min/%40ascii-kit%2Fimage)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40ascii-kit%2Fimage)
+![npm package minimized gzipped size](https://img.shields.io/bundlejs/size/%40ascii-kit%2Fimage)
+![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/%40ascii-kit%2Fimage)
 
 Convert **image** _(png,jpeg...)_ to **ASCII art**
 
@@ -38,8 +38,8 @@ Convert **image** _(png,jpeg...)_ to **ASCII art**
 
 ### SVG
 
-![npm bundle size](https://img.shields.io/bundlephobia/min/%40ascii-kit%2Fsvg)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40ascii-kit%2Fsvg)
+![npm package minimized gzipped size](https://img.shields.io/bundlejs/size/%40ascii-kit%2Fsvg)
+![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/%40ascii-kit%2Fsvg)
 
 Convert **SVG** to **ASCII art**
 
@@ -48,8 +48,8 @@ Convert **SVG** to **ASCII art**
 
 ### QR
 
-![npm bundle size](https://img.shields.io/bundlephobia/min/%40ascii-kit%2Fqr)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40ascii-kit%2Fqr)
+![npm package minimized gzipped size](https://img.shields.io/bundlejs/size/%40ascii-kit%2Fqr)
+![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/%40ascii-kit%2Fqr)
 
 Create **QR** codes in **ASCII art**
 
