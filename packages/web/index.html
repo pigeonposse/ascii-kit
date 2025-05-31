@@ -13,13 +13,15 @@
 		<style>
 			:root {
 				--theme-color: #44ba46;
-				--bg-color: black;
-				--radius: 0px;
+				--theme-shadow-color: #44ba4663;
 				--text-color: white;
-				--input-bg-color: rgb(14, 14, 14);
+				--bg-color: #040e04;
+				--input-bg-color: #151815;
 				--error-color: red;
 				--warn-color: yellow;
 				--info-color: blue;
+				--radius: 0px;
+				--font: monospace;
 			}
 			::selection {
 				background-color: var(--theme-color);
@@ -31,7 +33,7 @@
 				padding: 30px 20px;
 				background-color: var(--bg-color);
 				color:var(--text-color);
-				font-family: monospace;
+				font-family: var(--font);
 			}
 			input, textarea, .file-label, select {
 				background-color: var(--input-bg-color);
@@ -39,11 +41,14 @@
 				border: none !important;
 				padding: 0.5rem;
 				font-size: 1rem;
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
 			}
 			input, textarea, .file-label, button, select {
 				border-radius: var(--radius);
 				padding: 0.5rem 1rem;
-				font-family: monospace !important;
+				font-family: var(--font) !important;
 			}
 
 			button:focus-within,
@@ -53,7 +58,8 @@
 			select:focus-within,
 			[contenteditable]:focus-within {
 				outline-color: var(--theme-color) !important;
-				outline-style: dashed	;
+				outline-style: dashed;
+				outline-width: 1px;
 			}
 			a {
 				color: var(--text-color);
@@ -116,8 +122,8 @@
 				cursor: pointer;
 				font-weight: 700;
 			}
-			button.is-primary {
-				background-color: var(--theme-color);
+			button[type="submit"] {
+				box-shadow: 0px 0px 20px var(--theme-shadow-color);
 			}
 			button.is-secondary,
 			a.is-secondary {
@@ -137,19 +143,21 @@
 				align-content: center;
 				flex-wrap: nowrap;
 				overflow: auto;
-				padding: 1rem;
+				padding: 1rem 2px;
 			}
-			.file-label {
-				display: flex;
-				width: 100%;
+
+			input[type="file"] {
 				cursor: pointer;
 			}
 
-			.file-label span {
-				width: 100%;
-				cursor: pointer;
-				padding: 0.5rem 1rem;
-				text-align: center;
+			input[type="file"]::-webkit-file-upload-button {
+				background-color: transparent;
+				opacity: 0.6;
+				color: var(--text-color);
+				border: none;
+				border-radius: var(--radius);
+				margin-right: 20px;
+				font-family: var(--font) !important;
 			}
 			.tabs-content > div {
 				padding: 20px 0;
@@ -157,6 +165,9 @@
 			header {
 				text-align: center;
 				margin-bottom: 3rem;
+			}
+			header img {
+				filter: drop-shadow(0 0 40px var(--theme-shadow-color));
 			}
 			footer {
 				margin-top: 3rem;
@@ -179,6 +190,7 @@
 		<header>
 			<img
 				alt="ASCII Kit Logo"
+				height="80px"
 				src="/logo.png"
 				width="80px"
 			>
@@ -262,18 +274,12 @@
 						action="/"
 						method="get"
 					>
-						<label class="file-label">
-							<input
-								type="file"
-								accept="image/*"
-								hidden
-								name="image"
-								required
-							>
-							<span role="button">
-								Select image
-							</span>
-						</label>
+						<input
+							type="file"
+							accept="image/*"
+							name="image"
+							required
+						>
 						<button type="submit">Generate</button>
 					</form>
 					<pre
@@ -510,7 +516,7 @@
 				try {
 					const fontNames = await deps.getFontList();
 
-					$textFormSelect.innerHTML = '<option value="">-- Select a font --</option>';
+					$textFormSelect.innerHTML = '<option value="" style="opacity: 0.6;">-- Select a font --</option>';
 					fontNames.forEach(name => {
 						const option = document.createElement('option');
 						option.value = name;
@@ -562,14 +568,7 @@
 			/** IMAGE FORM **/
 			/************************************************************************/
 			const $imageForm = document.querySelector( '#form-image > form' )
-			const $imageFormFileBtn = $imageForm.querySelector( '[role="button"]' )
-			const $imageFormFileInput = $imageForm.querySelector( '[type="file"]' )
 
-			$imageFormFileInput.addEventListener( 'change', e => {
-				$imageFormFileBtn.textContent =
-					'Selected file: '+e.target?.files?.[0]?.name
-					|| 'File not selected.Select another image'
-			})
 			$imageForm.addEventListener( 'submit', async e => {
 				try {
 					e.preventDefault()

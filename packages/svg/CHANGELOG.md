@@ -1,5 +1,14 @@
 # @ascii-kit/svg
 
+## 0.0.6
+
+### Patch Changes
+
+- add documentation to packages
+
+- Updated dependencies []:
+  - @ascii-kit/image@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

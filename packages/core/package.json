@@ -1,15 +1,40 @@
 {
 	"name": "ascii-kit",
-	"version": "0.0.5",
-	"description": "Toolkit for create awesome ascii art",
+	"version": "0.0.6",
+	"description": "Toolkit for create awesome ascii art from different sources like fonts, images etc...",
 	"keywords": [
 		"ascii",
 		"ascii-art",
 		"ascii-kit",
 		"dovenv",
+		"font",
+		"image",
 		"pigeonposse",
-		"pp"
+		"pp",
+		"qr",
+		"svg",
+		"tree"
 	],
+	"homepage": "https://docs.ascii-kit.pigeonposse.com/guide/core",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/ascii-kit/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/ascii-kit/",
+		"directory": "packages/core"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
 	"type": "module",
 	"exports": {
 		".": {

@@ -64,9 +64,14 @@ packages/**/build
 **/*.timestamp-*
 **/__temp__/*
 **/__cache__/*
-docs/dev-dist/**
+
 
 **/packages/fonts/.temp/**
 **/packages/fonts
 **/packages/fonts-all
 **/packages/fonts-flf
+
+docs/guide
+docs/dev-dist
+docs/index.md
+docs/contributors.md

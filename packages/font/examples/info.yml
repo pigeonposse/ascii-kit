@@ -1,0 +1,21 @@
+ESM:
+  title: "Using @ascii-kit/font"
+  data:
+    MJS:
+        input: "./js/main.ts"
+        title: "Using JS (ES Module)"
+        type: "js"
+    FETCH:
+        input: "./fetch/main.ts"
+        title: "Fetching Font data as text"
+        type: "js"
+    FetchMJS:
+        input: "./fetch-module/main.ts"
+        title: "Fetching Font data as Module JS"
+        type: "js"
+    HTML:
+        input: "./html/index.html"
+        title: "Using HTML"
+        type: "html"
+
+

@@ -1,12 +1,32 @@
 {
 	"name": "@ascii-kit/svg",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "Convert svg to ASCII art",
 	"keywords": [
 		"dovenv",
 		"pigeonposse",
 		"pp"
 	],
+	"homepage": "https://docs.ascii-kit.pigeonposse.com/guide/svg",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/ascii-kit/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/ascii-kit/",
+		"directory": "packages/svg"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
 	"type": "module",
 	"exports": {
 		".": {

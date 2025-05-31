@@ -1,12 +1,32 @@
 {
 	"name": "@ascii-kit/tree",
-	"version": "0.0.5",
-	"description": "Create trees from ascii-art",
+	"version": "0.0.6",
+	"description": "Create ascii trees",
 	"keywords": [
 		"dovenv",
 		"pigeonposse",
 		"pp"
 	],
+	"homepage": "https://docs.ascii-kit.pigeonposse.com/guide/tree",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/ascii-kit/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/ascii-kit/",
+		"directory": "packages/tree"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
 	"type": "module",
 	"exports": {
 		".": {

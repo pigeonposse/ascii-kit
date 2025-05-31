@@ -229,7 +229,7 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		const getReadmeData = fontName => {
 
 			const importedName = digitsToEnglish( fontName.replaceAll( '-', '_' ) )
-			return `# ${fontName} - Figfont \n\nThis package contains figfont data for the font **${fontName}**. \n\n## Example usage \n\n\`\`\`js\nimport ${importedName} from '${getPKGname( fontName )}'\nimport {Font} from '@${LIB_ID}/font'\n\nconst font = new Font( ${importedName} )\nconsole.log( await font.text( 'Hello World!' )\n\`\`\``
+			return `## Description \n\nThis package contains figfont data for the font **${fontName}**. \n\n## Example usage \n\n\`\`\`js\nimport ${importedName} from '${getPKGname( fontName )}'\nimport {Font} from '@${LIB_ID}/font'\n\nconst font = new Font( ${importedName} )\nconsole.log( await font.text( 'Hello World!' ) )\n\`\`\``
 
 		}
 
@@ -264,11 +264,12 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 			const pkgData     = getPackageData( fontName )
 
 			await ensureDir( joinPath( FONT_PATH, FONT_DIST_ROUTE ) )
+			await ensureDir( joinPath( FONT_PATH, 'docs' ) )
 
 			await writeFile( joinPath( FONT_PATH, FONT_JS_ROUTE ), content.js, 'utf8' )
 			await writeFile( joinPath( FONT_PATH, FONT_DTS_ROUTE ), content.dts, 'utf8' )
 			await writeFile( joinPath( FONT_PATH, 'package.json' ), toJson( pkgData ), 'utf8' )
-			await writeFile( joinPath( FONT_PATH, 'README.md' ), getReadmeData( getFontID( fontName ) ), 'utf8' )
+			await writeFile( joinPath( FONT_PATH, 'docs', 'pre.md' ), getReadmeData( getFontID( fontName ) ), 'utf8' )
 			await writeFile( joinPath( ALL_FONT_DIST_PATH, fontName + '.js' ), content.js, 'utf8' )
 			await writeFile( joinPath( ALL_FONT_DIST_PATH, fontName + '.d.ts' ), content.dts, 'utf8' )
 			await writeFile( joinPath( ALL_FLF_FONT_DIST_PATH, fontName + '.flf' ), textContent )
@@ -282,13 +283,13 @@ export const fontsPlugin = defineConfig( { custom : { fonts : {
 		const fontsString = toJson( fontsArray )
 		const typeDef     = `/** List of figfonts names */\ndeclare const fonts: ${fontsString};\nexport default fonts;\n`
 
-		await writeFile( joinPath( ALL_FONT_PATH, 'README.md' ), `# All in one FigFonts`, 'utf8' )
+		// await writeFile( joinPath( ALL_FONT_PATH, 'README.md' ), `# All in one FigFonts`, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_PATH, 'package.json' ), toJson( ALL_FONT_PKG_DATA ), 'utf8' )
 		await writeFile( joinPath( ALL_FONT_DIST_PATH, 'list.json' ), fontsString, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_DIST_PATH, 'index.js' ), `export default ${fontsString}\n`, 'utf8' )
 		await writeFile( joinPath( ALL_FONT_PATH, FONT_DIST_ROUTE, 'index.d.ts' ), typeDef, 'utf8' )
 
-		await writeFile( joinPath( ALL_FLF_FONT_PATH, 'README.md' ), `# All in one FLF FigFonts`, 'utf8' )
+		// await writeFile( joinPath( ALL_FLF_FONT_PATH, 'README.md' ), `# All in one FLF FigFonts`, 'utf8' )
 		await writeFile( joinPath( ALL_FLF_FONT_DIST_PATH, 'list.json' ), fontsString, 'utf8' )
 		await writeFile( joinPath( ALL_FLF_FONT_PATH, 'package.json' ), toJson( {
 			...pkgDataShared,

@@ -173,13 +173,8 @@ jobs:
         if: steps.check_package_json.outputs.stdout != 'No changes in package.json'
         run: pnpm . gh info update
         continue-on-error: true
-    #   - name: 📚🐙😺➡️ Call to workflow for deploy Documentation
-    #     if: steps.updated.outputs.core_version != ''
-    #     uses: benc-uk/workflow-dispatch@v1
-    #     with:
-    #       workflow: fonts.yml
-    #     continue-on-error: true
-      - name: 📚🐙😺➡️ Call to workflow for deploy Documentation
+
+      - name: 📚🐙😺➡️ Call to workflow for deploy Webs
         if: steps.updated.outputs.core_version != ''
         uses: benc-uk/workflow-dispatch@v1
         with:

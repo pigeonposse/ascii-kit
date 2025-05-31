@@ -8,9 +8,6 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 env:
     GITHUB_TOKEN: ${{ github.token }}
-    DOCS_ID: 'ascii-kit'
-    DOCS_DIR: 'packages/web/dist'
-    BUILD_CMD: 'pnpm build && pnpm build:web'
 
 jobs:
   deploy:
@@ -41,14 +38,24 @@ jobs:
       #########################################################################
 
       - name: 🏗 Build packages
-        run: ${{env.BUILD_CMD}}
+        run: pnpm build && pnpm build:web
 
-      - name: 🌥 Deploy in cloudflare pages
+      - name: 🌥 Deploy WEB in cloudflare pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ${{env.DOCS_DIR}} --project-name=${{env.DOCS_ID}}
+          command: pages deploy packages/web/dist --project-name=ascii-kit
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          packageManager: pnpm
+
+      - name: 🌥 Deploy DOCS in cloudflare pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build/docs --project-name=docs-ascii-kit
           # Optional: Enable this if you want to have GitHub Deployments triggered
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           packageManager: pnpm

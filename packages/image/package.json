@@ -1,12 +1,32 @@
 {
 	"name": "@ascii-kit/image",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"description": "Convert image (png,jpeg...) to ASCII art",
 	"keywords": [
 		"dovenv",
 		"pigeonposse",
 		"pp"
 	],
+	"homepage": "https://docs.ascii-kit.pigeonposse.com/guide/image",
+	"bugs": {
+		"url": "https://github.com/pigeonposse/ascii-kit/issues",
+		"email": "dev@pigeonposse.com"
+	},
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/pigeonposse/ascii-kit/",
+		"directory": "packages/image"
+	},
+	"funding": {
+		"type": "individual",
+		"url": "https://pigeonposse.com/contribute"
+	},
+	"license": "GPL-3.0",
+	"author": {
+		"name": "Angelo",
+		"email": "angelo@pigeonposse.com",
+		"url": "https://github.com/angelespejo"
+	},
 	"type": "module",
 	"exports": {
 		".": {
