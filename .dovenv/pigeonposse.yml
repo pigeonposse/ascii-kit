@@ -6,7 +6,7 @@ web:
     name: ascii-kit
     desc: Ascci utils for JS Runtimes
     homepage: https://ascii-kit.pigeonposse.com
-    library: https://www.npmjs.com/package/@ascii-kit/core
+    library: https://www.npmjs.com/package/ascii-kit
     changelog: >-
       https://github.com/pigeonposse/ascii-kit/blob/main/packages/core/CHANGELOG.md
     docs: https://ascii-kit.pigeonposse.com

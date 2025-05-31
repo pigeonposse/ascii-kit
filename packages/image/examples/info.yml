@@ -1,0 +1,17 @@
+ESM:
+  title: "Multiple types of uses"
+  data:
+    MJS:
+        input: "./js/main.ts"
+        title: "JS (ES Module)"
+        type: "ts"
+    FETCH:
+        input: "./fetch/main.ts"
+        title: "Fetch Font data as text"
+        type: "ts"
+    VITE:
+        input: "./vite/main.ts"
+        title: "Usage with Vite"
+        type: "ts"
+
+

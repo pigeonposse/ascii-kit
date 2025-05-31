@@ -1,22 +1,16 @@
 import { Font } from '@ascii-kit/font'
 
-/**
- * Fetches the specified font by name from unpkg.com.
- *
- * @param   {string}          name - The name of the font to fetch.
- * @returns {Promise<string>}      The text content of the font file.
- * @throws  {Error}           If the request fails or the response is not 200.
- * @see     https://unpkg.com/@ascii-kit/fonts-flf/dist/list.json
- */
-const getFont = async ( name: string ) => {
+const getAsciiString = async ( font: string, txt: string ) => {
 
-	const res = await fetch( `https://unpkg.com/@ascii-kit/fonts-flf/dist/${name}.flf` )
-	if ( !res.ok ) throw new Error( `Error getting file: ${res.statusText}` )
-	return await res.text()
+	// const fontModule = await import( `https://cdn.jsdelivr.net/npm/@ascii-kit/fonts/dist/${name}.js` )
+	const fontModule = await import( `https://cdn.jsdelivr.net/npm/@ascii-kit/font-${font}/+esm` )
+	const fontData   = fontModule.default
+
+	const fontInstance = new Font( fontData )
+	const ascii        = await fontInstance.text( txt )
+
+	return ascii
 
 }
-
-const font  = new Font( await getFont( '3d' ) )
-const ascii = await font.text( 'Hello World!' )
-
+const ascii = await getAsciiString( '3d', 'Hello World!' )
 console.log( ascii )
