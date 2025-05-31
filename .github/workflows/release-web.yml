@@ -38,7 +38,7 @@ jobs:
       #########################################################################
 
       - name: 🏗 Build packages
-        run: pnpm build:fonts && pnpm build && pnpm build:web
+        run: pnpm build:fonts && pnpm build:tools && pnpm build:lib && pnpm build:docs-pre && pnpm build:docs && pnpm build:web
 
       - name: 🌥 Deploy WEB in cloudflare pages
         uses: cloudflare/wrangler-action@v3
