@@ -325,7 +325,11 @@
 							.
 						</p>
 						<p>
-							It also provides an official library for Node.js/ESM, available via NPM, ideal for developers who want to use ASCII art features in their own apps or CLI tools.
+							It also provides an official library for
+							<a href="https://www.npmjs.com/package/ascii-kit" target="_blank">
+								JavaScript / TypeScript
+							</a>
+							(Node.js, Deno, Bun, Web Workers, Browsers...), available via NPM, ideal for developers who want to use ASCII art features in their own apps, websites or CLI tools.
 						</p>
 						<p>
 							As an open source project, contributions, improvements, and bug reports from the community are welcome. Your support makes the project better for everyone!
@@ -648,11 +652,11 @@
 					console.error('Error al compartir:', err);
 				}
 			});
-
-			try {
-				console.log(LOGO_ASCII)
-			} catch (_e) {}
-
+			window.onload = () =>{
+				try {
+					console.log(LOGO_ASCII)
+				} catch (_e) {}
+			}
 		</script>
 
 	</body>
