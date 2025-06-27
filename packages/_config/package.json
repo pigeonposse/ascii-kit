@@ -2,7 +2,7 @@
 	"name": "@ascii-kit/repo-config",
 	"version": "0.0.6",
 	"private": true,
-	"description": "Confuration for monorepo repositories",
+	"description": "Configuration for monorepo repositories",
 	"keywords": [
 		"dovenv",
 		"pigeonposse",
