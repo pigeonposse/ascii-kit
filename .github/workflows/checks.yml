@@ -177,6 +177,8 @@ jobs:
         if: steps.check_package_json.outputs.stdout != 'No changes in package.json'
         run: pnpm . gh info update
         continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 📚🐙😺➡️ Call to workflow for deploy Webs
         if: steps.updated.outputs.core_version != ''
