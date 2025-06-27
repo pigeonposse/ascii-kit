@@ -142,11 +142,15 @@ jobs:
       - name: Get updated versions if exists
         id: updated
         run: |
-          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "ascii-kit") | .version')
+          library_id=$(jq -r '.extra.libraryID' package.json)
+          core_version=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r --arg id "$library_id" '.[] | select(.name == $id) | .version')
           core_version_major=${core_version%%.*}
           echo Set changesets outputs
           echo '${{ toJSON(steps.changesets.outputs) }}'
           echo Set updated versions
+          echo "library_id=$library_id" 
+          echo "core_version=$core_version"
+          echo "core_version_major=$core_version_major"
           echo "core_version=$core_version" >> $GITHUB_OUTPUT
           echo "core_version_major=$core_version_major" >> $GITHUB_OUTPUT
 
@@ -179,6 +183,17 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: release-web.yml
+        continue-on-error: true
+
+      - name: 📚🐙😺➡️ Call to workflow for update API docs
+        if: steps.updated.outputs.core_version != ''
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: 2025-api.yml
+          repo: pigeonposse/pigeon-web
+          ref: main
+          # Required when using the `repo` option. Either a PAT or a token generated from the GitHub app or CLI
+          token: "${{ secrets.GH_API_TOKEN }}"
         continue-on-error: true
 
 ###############################################################################
