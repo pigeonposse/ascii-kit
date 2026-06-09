@@ -8,8 +8,8 @@ import {
  * Represents a font that can be used to generate ASCII art.
  *
  * @example
- * import font1row from '@ascci-art/font-1row'
- * import { Font } from '@ascii-art/core'
+ * import font1row from '@ascii-kit/font-1row'
+ * import { Font } from '@ascii-kit/font'
  *
  * const font = new Font( font1row )
  * console.log( await font.text( 'Boo!' ) )
